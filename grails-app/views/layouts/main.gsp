@@ -35,9 +35,9 @@
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="/TaylorsServices/News/index">Home<span
+						<li class="${ pageProperty(name:'meta.nav').equals( 'home' ) ? 'active' : null }"><a href="/TaylorsServices/News/index">Home<span
 								class="sr-only">(current)</span></a></li>
-						<li><a href="/TaylorsServices/Employee/index">Candidates</a></li>
+						<li class="${ pageProperty(name:'meta.nav').equals( 'candidate' ) ? 'active' : null }"><a href="/TaylorsServices/Employee/index">Candidates</a></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false">Dropdown
 								<span class="caret"></span>

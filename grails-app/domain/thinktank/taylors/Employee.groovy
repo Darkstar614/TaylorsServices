@@ -4,7 +4,7 @@ class Employee {
 	
 	String firstName
 	String lastName
-	Date dateOfBirth
+	int age
 	
 
     static constraints = {

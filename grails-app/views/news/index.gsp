@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="layout" content="main" />
+<meta name="nav" content="home"/>
 <title>Home Page</title>
 </head>
 <body>

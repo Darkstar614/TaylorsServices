@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="layout" content="main"/>
-		<title>Render Domain</title>
-	</head>
-	<body>
-		<g:form action="save">
-			<label for="lastName">Last Name</label>
-			<g:textField name="lastName" value="${employee.lastName}"/>
-			<br/>
-			<label for="firstName">First Name</label>
-			<g:textField name="firstName" value="${employee.firstName}"/>
-			<br/>
-			<label for="dateOfBirth">Birthdate</label>
-			<g:textField name="age" value="${employee.dateOfBirth}"/>
-			<br/>
-			<g:submitButton name="create" value="Save" />
-		</g:form>
-	</body>
+<head>
+<meta name="layout" content="main" />
+<title>Render Domain</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>First Name</td>
+			<td>Last Name</td>
+			<td>Age</td>
+		</tr>
+		<g:each in="${employeeInstanceList}" var="employee">
+			<tr>
+				<td>
+					${employee.lastName}
+				</td>
+				<td>
+					${employee.firstName}
+				</td>
+				<td>
+					${employee.age}
+				</td>
+			</tr>
+		</g:each>
+	</table>
+	<g:link action="create">
+    Create new Employee
+    </g:link>
+</body>
 </html>

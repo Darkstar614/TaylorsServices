@@ -2,20 +2,21 @@
 <html>
 	<head>
 		<meta name="layout" content="main"/>
+		<meta name="nav" content="candidate"/>
 		<title>Render Domain</title>
 	</head>
 	<body>
-		<g:form action="save">
-			<label for="lastName">Last Name</label>
-			<g:textField name="lastName" value="${employee.lastName}"/>
-			<br/>
-			<label for="firstName">First Name</label>
-			<g:textField name="firstName" value="${employee.firstName}"/>
-			<br/>
-			<label for="dateOfBirth">Birthdate</label>
-			<g:textField name="age" value="${employee.dateOfBirth}"/>
-			<br/>
-			<g:submitButton name="create" value="Save" />
-		</g:form>
+		<g:form controller="employee" action="save">
+            <label>First Name: </label>
+            <g:textField name="firstName"/><br/>
+
+            <label>Last Name: </label>
+            <g:textField name="lastName"/><br/>
+
+            <label>Age: </label>
+            <g:textField name="age"/><br/>
+
+            <g:actionSubmit value="Save"/>
+        </g:form>
 	</body>
 </html>
