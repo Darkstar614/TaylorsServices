@@ -9,7 +9,7 @@ class EmployeeController {
 	def save() {
 		def employee = new Employee(params)
 		employee.save()
-		render "Success!"
+		render (view:'list.gsp')
 	}
 	
 	def list(Integer max) {
