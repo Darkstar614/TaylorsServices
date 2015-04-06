@@ -14,6 +14,7 @@
 <link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}"
 	type="image/x-icon">
 <asset:stylesheet src="bootstrap.min.css" />
+<asset:stylesheet src="custom.css" />
 <asset:javascript src="bootstrap.min.js" />
 <g:layoutHead />
 </head>

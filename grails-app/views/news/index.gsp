@@ -9,17 +9,7 @@
 <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
-	<a href="#list-news" class="skip" tabindex="-1"><g:message
-			code="default.link.skip.label" default="Skip to content&hellip;" /></a>
-	<div class="nav" role="navigation">
-		<ul>
-			<li><a class="home" href="${createLink(uri: '/')}"><g:message
-						code="default.home.label" /></a></li>
-			<li><g:link class="create" action="create">
-					<g:message code="default.new.label" args="[entityName]" />
-				</g:link></li>
-		</ul>
-	</div>
+
 	<div id="list-news" class="content scaffold-list" role="main">
 		<h1>
 			<g:message code="default.list.label" args="[entityName]" />
@@ -32,22 +22,23 @@
 
 
 		<g:each in="${newsInstanceList}" status="i" var="newsInstance">
-
-			<div class="list-group">
-				<a href="#" class="list-group-item">
-					<h4 class="list-group-item-heading">
-						${fieldValue(bean: newsInstance, field: "title")}
-					</h4>
-					<p class="list-group-item-text">
-						${fieldValue(bean: newsInstance, field: "content")}
-					</p> <br />
-					<p>
-						<g:formatDate format="MM-dd-yy" date="${newsInstance.postDate}" />
-					</p> <br />
-					<p>
-						Author:
-						${fieldValue(bean: newsInstance, field: "author")}
-					</p> <br /> <g:form url="[resource:newsInstance, action:'delete']"
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4>${fieldValue(bean: newsInstance, field: "title")}</h4>
+				</div>
+				<div class="panel-body">
+					${fieldValue(bean: newsInstance, field: "content")}
+				</div>
+				<div class="panel-footer">
+				<div class="float">
+					<strong>Author:</strong>
+					${fieldValue(bean: newsInstance, field: "author")}
+					<br /><strong>Date:</strong>
+					<g:formatDate format="MM-dd-yy" date="${newsInstance.postDate}" />
+					</div>
+					<br />
+					<div class="right-align">
+					<g:form url="[resource:newsInstance, action:'delete']"
 						method="DELETE">
 						<fieldset class="buttons">
 							<g:link class="edit" action="edit" resource="${newsInstance}">
@@ -58,9 +49,9 @@
 								onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 						</fieldset>
 					</g:form>
-				</a>
+					</div>
+				</div>
 			</div>
-
 		</g:each>
 
 		<div class="pagination">
