@@ -6,3 +6,11 @@
 .right-align {
 	text-align:right;
 }
+
+#datePicker select{
+	color: black;
+}
+
+html {
+	overflow-y: scroll;
+}

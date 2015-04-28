@@ -6,13 +6,13 @@
 <meta name="layout" content="main">
 <g:set var="entityName"
 	value="${message(code: 'news.label', default: 'News')}" />
-<title><g:message code="default.list.label" args="[entityName]" /></title>
+<title>TPS News</title>
 </head>
 <body>
 
 	<div id="list-news" class="content scaffold-list" role="main">
 		<h1>
-			<g:message code="default.list.label" args="[entityName]" />
+			TPS News
 		</h1>
 		<g:if test="${flash.message}">
 			<div class="message" role="status">
@@ -55,7 +55,7 @@
 		</g:each>
 
 		<div class="pagination">
-			<g:paginate total="${newsInstanceCount ?: 0}" />
+			<g:paginate action="index" total="${newsInstanceCount ?: 0}" />
 		</div>
 	</div>
 </body>

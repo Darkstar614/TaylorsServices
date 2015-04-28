@@ -16,11 +16,11 @@
 		<g:message code="news.content.label" default="Content" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textArea name="content" cols="40" rows="5" maxlength="255" required="" value="${newsInstance?.content}"/>
+	<g:textArea name="content" cols="80" rows="10" maxlength="255" required="" value="${newsInstance?.content}"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: newsInstance, field: 'postDate', 'error')} required">
+<div id="datePicker" class="fieldcontain ${hasErrors(bean: newsInstance, field: 'postDate', 'error')} required">
 	<label for="postDate">
 		<g:message code="news.postDate.label" default="Post Date" />
 		<span class="required-indicator">*</span>

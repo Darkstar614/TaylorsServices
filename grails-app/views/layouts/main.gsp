@@ -13,14 +13,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}"
 	type="image/x-icon">
-<asset:stylesheet src="bootstrap.min.css" />
+<asset:stylesheet src="bootstrap.css" />
 <asset:stylesheet src="custom.css" />
 <asset:javascript src="bootstrap.min.js" />
 <g:layoutHead />
 </head>
 <body>
 	<div class="container">
-		<asset:image src="grails_logo.png" alt="Taylor's" />
+		<asset:image src="tps_logo.png" alt="Taylor's" />
 		<nav class="navbar navbar-default navbar-justified">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -38,7 +38,9 @@
 					<ul class="nav navbar-nav">
 						<li class="${ pageProperty(name:'meta.nav').equals( 'home' ) ? 'active' : null }"><a href="/TaylorsServices/News/index">Home<span
 								class="sr-only">(current)</span></a></li>
+						<li class="${ pageProperty(name:'meta.nav').equals( 'client' ) ? 'active' : null }"><a href="/TaylorsServices/Client/index">Clients</a></li>
 						<li class="${ pageProperty(name:'meta.nav').equals( 'candidate' ) ? 'active' : null }"><a href="/TaylorsServices/Employee/index">Candidates</a></li>
+						<li class="${ pageProperty(name:'meta.nav').equals( 'about' ) ? 'active' : null }"><a href="/TaylorsServices/about/">About</a></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false">Dropdown
 								<span class="caret"></span>
