@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="layout" content="main" />
+<meta name="nav" content="candidate"/>
 <title>Render Domain</title>
 </head>
 <body>

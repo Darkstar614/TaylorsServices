@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="layout" content="main">
+<meta name="nav" content="about"/>
 <title>About TPS</title>
 </head>
 <body>

@@ -36,10 +36,22 @@ environments {
     }
     production {
         dataSource {
-			dbCreate = "update"
-			url = "jdbc:mysql://localhost:3306/taylors"		
-			username = "root"
-			password = "root+1"
+		 username = "FAKEUSERNAME"
+		 password = "FAKEPASSWORD"
+		 pooled = true
+		 dbCreate = "update"
+		 driverClassName = "com.mysql.jdbc.Driver"
+		 url = "jdbc:mysql://xxxxxxxx.xxxxxxx.us-east-1.rds.amazonaws.com:3306/ebdb?user=FAKEUSERNAME&password=FAKEPASSWORD"
+		 dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+		 properties {
+		  validationQuery = "SELECT 1"
+		  testOnBorrow = true
+		  testOnReturn = true
+		  testWhileIdle = true
+		  timeBetweenEvictionRunsMillis = 1800000
+		  numTestsPerEvictionRun = 3
+		  minEvictableIdleTimeMillis = 1800000
+		  }
 		}
     }
 }

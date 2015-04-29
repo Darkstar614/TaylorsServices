@@ -1,9 +1,25 @@
 import thinktank.taylors.Employee
 import thinktank.taylors.News
+import thinktank.taylors.Role
+import thinktank.taylors.User
+import thinktank.taylors.UserRole
 
 class BootStrap {
 
 	def init = { servletContext ->
+		def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
+		def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
+		
+		def testUser = new User(username: 'Leonaj7', password:'stevecantspell')
+		testUser.save(flush: true)
+		
+		UserRole.create testUser, adminRole, true
+		
+		testUser = new User(username: 'tom', password:'password')
+		testUser.save(flush: true)
+		
+		UserRole.create testUser, userRole, true
+		
 		def employee = new Employee()
 		employee.firstName = 'John'
 		employee.lastName = 'Leonardo'

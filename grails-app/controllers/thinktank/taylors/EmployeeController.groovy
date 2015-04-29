@@ -1,5 +1,8 @@
 package thinktank.taylors
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN'])
 class EmployeeController {
 
     def index() {

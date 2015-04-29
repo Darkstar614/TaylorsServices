@@ -16,7 +16,7 @@
 		<g:message code="news.content.label" default="Content" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textArea name="content" cols="80" rows="10" maxlength="255" required="" value="${newsInstance?.content}"/>
+	<g:textArea name="content" cols="80" rows="10" maxlength="700" required="" value="${newsInstance?.content}"/>
 
 </div>
 

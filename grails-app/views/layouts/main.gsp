@@ -36,11 +36,11 @@
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="${ pageProperty(name:'meta.nav').equals( 'home' ) ? 'active' : null }"><a href="/TaylorsServices/News/index">Home<span
+						<li class="${ pageProperty(name:'meta.nav').equals( 'news' ) ? 'active' : null }"><a href="/News/">Home<span
 								class="sr-only">(current)</span></a></li>
-						<li class="${ pageProperty(name:'meta.nav').equals( 'client' ) ? 'active' : null }"><a href="/TaylorsServices/Client/index">Clients</a></li>
-						<li class="${ pageProperty(name:'meta.nav').equals( 'candidate' ) ? 'active' : null }"><a href="/TaylorsServices/Employee/index">Candidates</a></li>
-						<li class="${ pageProperty(name:'meta.nav').equals( 'about' ) ? 'active' : null }"><a href="/TaylorsServices/about/">About</a></li>
+						<li class="${ pageProperty(name:'meta.nav').equals( 'client' ) ? 'active' : null }"><a href="/Client/">Clients</a></li>
+						<li class="${ pageProperty(name:'meta.nav').equals( 'candidate' ) ? 'active' : null }"><a href="/Employee/">Candidates</a></li>
+						<li class="${ pageProperty(name:'meta.nav').equals( 'about' ) ? 'active' : null }"><a href="/about/">About</a></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false">Dropdown
 								<span class="caret"></span>
@@ -62,7 +62,7 @@
 						<button type="submit" class="btn btn-default">Submit</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">Link</a></li>
+						<li><g:link class="list" action="logout">Logout</g:link></li>
 					</ul>
 				</div>
 			</div>
