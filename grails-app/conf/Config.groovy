@@ -91,7 +91,7 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-        grails.serverURL = "http://default-environment-xxxxxx.elasticbeanstalk.com/"
+        grails.serverURL = "http://default-environment-3h6fkcivyh.elasticbeanstalk.com/"
     }
 }
 
@@ -120,6 +120,7 @@ log4j.main = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'thinktank.taylors.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'thinktank.taylors.UserRole'
 grails.plugin.springsecurity.authority.className = 'thinktank.taylors.Role'
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
 	'/index':                         ['permitAll'],
@@ -128,6 +129,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
+	'/**/favicon.ico':                ['permitAll'],
+	'/about/**':                      ['ROLE_ADMIN', 'ROLE_USER']
 ]
 

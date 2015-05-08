@@ -12,7 +12,10 @@ class NewsControllerSpec extends Specification {
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["title"] = 'Valid title'
+        params["content"] = 'test content for testing tests 12345'
+        params["postDate"] = new Date() + 2
+        params["author"] = 'John'
     }
 
     void "Test the index action returns the correct model"() {
@@ -53,26 +56,10 @@ class NewsControllerSpec extends Specification {
 
             controller.save(news)
 
-        then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/news/show/1'
+        then:"A redirect is issued to the index action"
+            response.redirectedUrl == '/news/index'
             controller.flash.message != null
             News.count() == 1
-    }
-
-    void "Test that the show action returns the correct model"() {
-        when:"The show action is executed with a null domain"
-            controller.show(null)
-
-        then:"A 404 error is returned"
-            response.status == 404
-
-        when:"A domain instance is passed to the show action"
-            populateValidParams(params)
-            def news = new News(params)
-            controller.show(news)
-
-        then:"A model is populated containing the domain instance"
-            model.newsInstance == news
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -118,8 +105,8 @@ class NewsControllerSpec extends Specification {
             news = new News(params).save(flush: true)
             controller.update(news)
 
-        then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/news/show/$news.id"
+        then:"A redirect is issued to the index action"
+            response.redirectedUrl == "/news/index"
             flash.message != null
     }
 

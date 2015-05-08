@@ -7,25 +7,23 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-@Secured(['ROLE_ADMIN'])
 class NewsController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+	@Secured(['ROLE_USER', 'ROLE_ADMIN'])
     def index(Integer max) {
         params.max = Math.min(max ?: 6, 100)
         respond News.list(params), model:[newsInstanceCount: News.count()]
     }
 
-    def show(News newsInstance) {
-        respond newsInstance
-    }
-
+	@Secured(['ROLE_ADMIN'])
     def create() {
         respond new News(params)
     }
 
     @Transactional
+	@Secured(['ROLE_ADMIN'])
     def save(News newsInstance) {
         if (newsInstance == null) {
             notFound()
@@ -42,17 +40,19 @@ class NewsController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'news.label', default: 'News'), newsInstance.id])
-                redirect newsInstance
+                redirect action:"index", method:"GET"
             }
             '*' { respond newsInstance, [status: CREATED] }
         }
     }
 
+	@Secured(['ROLE_ADMIN'])
     def edit(News newsInstance) {
         respond newsInstance
     }
 
     @Transactional
+	@Secured(['ROLE_ADMIN'])
     def update(News newsInstance) {
         if (newsInstance == null) {
             notFound()
@@ -76,6 +76,7 @@ class NewsController {
     }
 
     @Transactional
+	@Secured(['ROLE_ADMIN'])
     def delete(News newsInstance) {
 
         if (newsInstance == null) {

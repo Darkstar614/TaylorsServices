@@ -1,3 +1,4 @@
+import thinktank.taylors.Client
 import thinktank.taylors.Employee
 import thinktank.taylors.News
 import thinktank.taylors.Role
@@ -10,7 +11,7 @@ class BootStrap {
 		def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
 		def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
 		
-		def testUser = new User(username: 'Leonaj7', password:'stevecantspell')
+		def testUser = new User(username: 'manager', password:'thinktank55')
 		testUser.save(flush: true)
 		
 		UserRole.create testUser, adminRole, true
@@ -133,6 +134,42 @@ class BootStrap {
 		news.postDate = new Date() + 3
 		news.author = 'Last Guy Jones'
 		news.save()
+		
+		def client = new Client()
+		client.companyName = 'First Company'
+		client.summary = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
+		client.address = 'test address'
+		client.city = 'Columbus'
+		client.state = 'OH'
+		client.zipCode = '12345'
+		client.emailAddress = 'test@test.com'
+		client.phoneNumber = '1234567890'
+		client.partnersSince = new Date() + 1
+		client.save()
+		
+		client = new Client()
+		client.companyName = 'Second Company'
+		client.summary = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
+		client.address = 'a different address'
+		client.city = 'Nowhere'
+		client.state = 'TN'
+		client.zipCode = '12343'
+		client.emailAddress = 'test@test.com'
+		client.phoneNumber = '1234567890'
+		client.partnersSince = new Date() + 1
+		client.save()
+		
+		client = new Client()
+		client.companyName = 'Third Company'
+		client.summary = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
+		client.address = 'a third address 123'
+		client.city = 'Bakersfield'
+		client.state = 'CA'
+		client.zipCode = '22345'
+		client.emailAddress = 'test@test.com'
+		client.phoneNumber = '1234567890'
+		client.partnersSince = new Date() + 1
+		client.save()
 	}
 	def destroy = {
 	}

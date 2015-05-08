@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}"
 	type="image/x-icon">
-<asset:stylesheet src="bootstrap.css" />
+<asset:stylesheet src="bootstrap.min.css" />
 <asset:stylesheet src="custom.css" />
 <asset:javascript src="bootstrap.min.js" />
 <g:layoutHead />
@@ -21,7 +21,7 @@
 <body>
 	<div class="container">
 		<asset:image src="tps_logo.png" alt="Taylor's" />
-		<nav class="navbar navbar-default navbar-justified">
+		<nav class="navbar navbar-inverse navbar-justified">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed"
@@ -62,7 +62,8 @@
 						<button type="submit" class="btn btn-default">Submit</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						<li><g:link class="list" action="logout">Logout</g:link></li>
+						<li><g:remoteLink class="logout" controller="logout" method="post" asynchronous="false" onSuccess="location.reload()">Logout</g:remoteLink>
+</li>
 					</ul>
 				</div>
 			</div>
