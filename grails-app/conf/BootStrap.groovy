@@ -1,3 +1,6 @@
+import java.util.Date;
+
+import thinktank.taylors.Candidate
 import thinktank.taylors.Client
 import thinktank.taylors.Employee
 import thinktank.taylors.News
@@ -7,20 +10,22 @@ import thinktank.taylors.UserRole
 
 class BootStrap {
 
+	def clientService
+
 	def init = { servletContext ->
 		def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
 		def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
-		
+
 		def testUser = new User(username: 'manager', password:'thinktank55')
 		testUser.save(flush: true)
-		
+
 		UserRole.create testUser, adminRole, true
-		
+
 		testUser = new User(username: 'tom', password:'password')
 		testUser.save(flush: true)
-		
+
 		UserRole.create testUser, userRole, true
-		
+
 		def employee = new Employee()
 		employee.firstName = 'John'
 		employee.lastName = 'Leonardo'
@@ -54,123 +59,124 @@ class BootStrap {
 		def news = new News()
 		news.title = 'First post'
 		news.content = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
-		news.postDate = new Date()
+		news.postDate = new Date() + 6
 		news.author = 'Curly'
 		news.save()
-		
+
 		news = new News()
 		news.title = 'Second post'
 		news.content = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
-		news.postDate = new Date()
+		news.postDate = new Date() + 2
 		news.author = 'Larry'
 		news.save()
-		
+
 		news = new News()
 		news.title = 'Third post'
 		news.content = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
-		news.postDate = new Date()
+		news.postDate = new Date() + 7
 		news.author = 'Moe'
 		news.save()
-		
+
 		news = new News()
 		news.title = 'Fourth post'
 		news.content = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
 		news.postDate = new Date()
 		news.author = 'Moe'
 		news.save()
-		
+
 		news = new News()
 		news.title = 'Fifth post'
 		news.content = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
-		news.postDate = new Date()
+		news.postDate = new Date() + 2
 		news.author = 'Shimp'
 		news.save()
-		
+
 		news = new News()
 		news.title = 'Sixth post'
 		news.content = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
 		news.postDate = new Date()
 		news.author = 'Steve'
 		news.save()
-		
+
 		news = new News()
 		news.title = 'Seventh post'
 		news.content = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
 		news.postDate = new Date()
 		news.author = 'Rick'
 		news.save()
-		
+
 		news = new News()
 		news.title = 'Eighth post'
 		news.content = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
 		news.postDate = new Date()
 		news.author = 'Bobby'
 		news.save()
-		
+
 		news = new News()
 		news.title = 'Ninth post'
 		news.content = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
 		news.postDate = new Date()
 		news.author = 'Timmy'
 		news.save()
-		
+
 		news = new News()
 		news.title = 'Tenth post'
 		news.content = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
-		news.postDate = new Date() + 2
+		news.postDate = new Date() + 5
 		news.author = 'Timmy2'
 		news.save()
-		
+
 		news = new News()
 		news.title = 'Eleventh post'
 		news.content = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
-		news.postDate = new Date() + 1
+		news.postDate = new Date() + 9
 		news.author = 'Timmy3'
 		news.save()
-		
+
 		news = new News()
 		news.title = 'Twelfth post'
 		news.content = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
-		news.postDate = new Date() + 3
+		news.postDate = new Date() + 13
 		news.author = 'Last Guy Jones'
 		news.save()
+
+
+		if (Client.count() == 0 ) {
+			// if no clients in the database, create some test data
+			clientService.createClient("Fakes And Stuff LLC", "test@test.com")
+			clientService.createClient("Other Brackets INC", "fake@test.com")
+			clientService.createClient("Fathbruckner Ltd", "steve@test.com")
+		}
+
+		def candidate = new Candidate()
+		candidate.firstName = 'Joe'
+		candidate.lastName = 'Jib'
+		candidate.birthdate = new Date() + 5 
+		candidate.address = ' 123 Turn pike road'
+		candidate.city = 'That city'
+		candidate.state = 'mi'
+		candidate.zipCode = '12345'
+		candidate.emailAddress = 'email@gil.com'
+		candidate.phoneNumber = '1234567890'
+		candidate.skills = 'lumber jack, metal worker and shinnagins'
+		candidate.save()
 		
-		def client = new Client()
-		client.companyName = 'First Company'
-		client.summary = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
-		client.address = 'test address'
-		client.city = 'Columbus'
-		client.state = 'OH'
-		client.zipCode = '12345'
-		client.emailAddress = 'test@test.com'
-		client.phoneNumber = '1234567890'
-		client.partnersSince = new Date() + 1
-		client.save()
+		candidate = new Candidate()
+		candidate.firstName = 'Janice'
+		candidate.lastName = 'Jibronie'
+		candidate.birthdate = new Date() + 8
+		candidate.address = ' 123 Killer street'
+		candidate.city = 'Other place'
+		candidate.state = 'mi'
+		candidate.zipCode = '12345'
+		candidate.emailAddress = 'email@gil.com'
+		candidate.phoneNumber = '1234567890'
+		candidate.skills = 'lumber jack, metal worker and shinnagins'
+		candidate.save()
 		
-		client = new Client()
-		client.companyName = 'Second Company'
-		client.summary = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
-		client.address = 'a different address'
-		client.city = 'Nowhere'
-		client.state = 'TN'
-		client.zipCode = '12343'
-		client.emailAddress = 'test@test.com'
-		client.phoneNumber = '1234567890'
-		client.partnersSince = new Date() + 1
-		client.save()
 		
-		client = new Client()
-		client.companyName = 'Third Company'
-		client.summary = 'Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'
-		client.address = 'a third address 123'
-		client.city = 'Bakersfield'
-		client.state = 'CA'
-		client.zipCode = '22345'
-		client.emailAddress = 'test@test.com'
-		client.phoneNumber = '1234567890'
-		client.partnersSince = new Date() + 1
-		client.save()
 	}
+
 	def destroy = {
 	}
 }

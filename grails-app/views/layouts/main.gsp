@@ -13,9 +13,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}"
 	type="image/x-icon">
+<asset:javascript src="jquery-1.11.3.min.js" />
 <asset:stylesheet src="bootstrap.min.css" />
 <asset:stylesheet src="custom.css" />
-<asset:javascript src="bootstrap.min.js" />
+<asset:javascript src="bootstrap.js" />
+
 <g:layoutHead />
 </head>
 <body>
@@ -39,7 +41,7 @@
 						<li class="${ pageProperty(name:'meta.nav').equals( 'news' ) ? 'active' : null }"><a href="/News/">Home<span
 								class="sr-only">(current)</span></a></li>
 						<li class="${ pageProperty(name:'meta.nav').equals( 'client' ) ? 'active' : null }"><a href="/Client/">Clients</a></li>
-						<li class="${ pageProperty(name:'meta.nav').equals( 'candidate' ) ? 'active' : null }"><a href="/Employee/">Candidates</a></li>
+						<li class="${ pageProperty(name:'meta.nav').equals( 'candidate' ) ? 'active' : null }"><a href="/Candidate/">Candidates</a></li>
 						<li class="${ pageProperty(name:'meta.nav').equals( 'about' ) ? 'active' : null }"><a href="/about/">About</a></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false">Dropdown

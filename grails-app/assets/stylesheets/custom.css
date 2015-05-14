@@ -93,3 +93,84 @@ html {
 #login .inner .chk {
 	height: 12px;
 }
+
+.pagination>a {
+	display: inline;
+}
+
+.currentStep {
+	position: relative;
+	float: left;
+	padding: 12px 16px;
+	line-height: 1.42857143;
+	text-decoration: none;
+	color: #98978b;
+	background-color: #f8f5f0;
+	border: 1px solid #dfd7ca;
+	margin-left: -1px;
+}
+
+.step {
+	position: relative;
+	float: left;
+	padding: 12px 16px;
+	line-height: 1.42857143;
+	text-decoration: none;
+	color: #8e8c84;
+	background-color: #dfd7ca;
+	border-color: #dfd7ca;
+	margin-left: -1px;
+}
+
+.nextLink {
+	padding: 5px 14px;
+	background-color: #f8f5f0;
+	border: 1px solid #dfd7ca;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	float: right;
+}
+
+.prevLink {
+	padding: 5px 14px;
+	background-color: #f8f5f0;
+	border: 1px solid #dfd7ca;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	float: left;
+}
+
+.pagination {
+	padding: 3px;
+	margin: 3px;
+	text-align: center;
+	font-size: 20px;
+	line-height: 29px;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+.pagination a {
+	padding: 2px 5px 2px 5px;
+	margin-right: 2px;
+	border: 1px solid #ddd;
+	text-decoration: none;
+	color: #88AF3F;
+}
+
+div.pagination a:hover, div.pagination a:active {
+	border: 1px solid #85BD1E;
+	color: #638425;
+	background-color: #F1FFD6;
+}
+
+.pagination span.currentStep {
+	padding: 2px 5px 2px 5px;
+	margin-right: 2px;
+	border: 1px solid #B2E05D;
+	font-weight: bold;
+	background-color: #B2E05D;
+	color: #FFF;
+}
+
+input[type=checkbox] {width:30px; height:30px;}
