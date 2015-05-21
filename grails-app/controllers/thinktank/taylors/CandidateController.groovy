@@ -24,6 +24,18 @@ class CandidateController {
     def create() {
         respond new Candidate(params)
     }
+	
+	def confirmRequest() {
+		def checkedCandidates = params.list('requestCandidate')
+		
+		def selectedCandidates = Candidate.getAll(checkedCandidates)
+		
+		if (selectedCandidates.size() > 3) {
+			flash.message = "Please select no more than 3 candidates"	
+			redirect view:'index'
+		}
+		[candidatesList:selectedCandidates]
+	}
 
     @Transactional
     def save(Candidate candidateInstance) {
@@ -39,7 +51,7 @@ class CandidateController {
 
         candidateInstance.save flush:true
 
-        request.withFormat {
+        confirmRequest.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'candidate.label', default: 'Candidate'), candidateInstance.id])
                 redirect candidateInstance
@@ -66,7 +78,7 @@ class CandidateController {
 
         candidateInstance.save flush:true
 
-        request.withFormat {
+        confirmRequest.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Candidate.label', default: 'Candidate'), candidateInstance.id])
                 redirect candidateInstance
@@ -85,7 +97,7 @@ class CandidateController {
 
         candidateInstance.delete flush:true
 
-        request.withFormat {
+        confirmRequest.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Candidate.label', default: 'Candidate'), candidateInstance.id])
                 redirect action:"index", method:"GET"
@@ -95,7 +107,7 @@ class CandidateController {
     }
 
     protected void notFound() {
-        request.withFormat {
+        confirmRequest.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'candidate.label', default: 'Candidate'), params.id])
                 redirect action: "index", method: "GET"

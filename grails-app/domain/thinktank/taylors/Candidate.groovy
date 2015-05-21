@@ -3,6 +3,7 @@ package thinktank.taylors
 
 class Candidate {
 	
+	String id
 	String firstName
 	String lastName
 	Date birthdate
@@ -28,4 +29,8 @@ class Candidate {
 		phoneNumber size: 10..10, blank:false, nullable: false
 		skills size: 1..100, blank:false, nullable: false
     }
+	
+	static mapping = {
+		id generator: 'guid'
+	}
 }
