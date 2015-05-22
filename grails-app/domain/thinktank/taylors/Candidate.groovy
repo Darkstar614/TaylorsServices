@@ -3,7 +3,7 @@ package thinktank.taylors
 
 class Candidate {
 	
-	String id
+//	String id
 	String firstName
 	String lastName
 	Date birthdate
@@ -31,6 +31,6 @@ class Candidate {
     }
 	
 	static mapping = {
-		id generator: 'guid'
+//		id generator: 'guid'
 	}
 }

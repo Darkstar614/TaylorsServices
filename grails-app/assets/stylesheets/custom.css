@@ -193,3 +193,11 @@ input[type=checkbox] {
 .message {
 	color: red;
 }
+
+.block {
+	overflow: hidden;
+}
+
+.black-text {
+	color: black;
+}

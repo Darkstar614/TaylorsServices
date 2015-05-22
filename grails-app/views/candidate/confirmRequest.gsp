@@ -28,7 +28,7 @@
 		<g:hiddenField name="firstCandidate" value="${candidatesList[0].id}" />
 		<g:hiddenField name="secondCandidate" value="${candidatesList[1].id}" />
 		<g:hiddenField name="thirdCandidate" value="${candidatesList[2].id}" />
-		<g:actionSubmit value="submitRequest"/>
+		<g:actionSubmit value="Submit Request" action="submitRequest"/>
 		</g:form>
 		
 	</div>

@@ -28,26 +28,26 @@
 					</h4>
 				</div>
 				<div class="panel-body">
-				<div class="float">
-				 <asset:image src="apple-touch-icon-retina.png" alt="temp icon" />
-				</div>
-				
-				${fieldValue(bean: clientInstance, field: "summary")}
-				<br/>
-				<strong>City:</strong>
-				${fieldValue(bean: clientInstance, field: "city")}
-				<br/>
-				<strong>State:</strong>
-				${fieldValue(bean: clientInstance, field: "state")}
-				
-					
+					<div class="float">
+						<asset:image
+							src="clients/${fieldValue(bean: clientInstance, field: "id")}.jpg"
+							alt="temp icon" />
+					</div>
+
+					<div class="block">
+						${fieldValue(bean: clientInstance, field: "summary")}
+						<br /> <strong>City:</strong>
+						${fieldValue(bean: clientInstance, field: "city")}
+						<br /> <strong>State:</strong>
+						${fieldValue(bean: clientInstance, field: "state")}
+					</div>
+
 				</div>
 				<div class="panel-footer">
 					<div class="float">
 						<strong>Phone:</strong>
 						${fieldValue(bean: clientInstance, field: "phoneNumber")}
-						<br /> 
-						<strong>Email:</strong>
+						<br /> <strong>Email:</strong>
 						${fieldValue(bean: clientInstance, field: "emailAddress")}
 					</div>
 					<br />

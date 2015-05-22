@@ -16,8 +16,7 @@
 		<g:if test="${flash.message}">
 			<div class="message" role="status">
 				<h3>
-					<strong>
-						${flash.message}
+					<strong> ${flash.message}
 					</strong>
 				</h3>
 			</div>
@@ -43,28 +42,32 @@
 						</div>
 						<div class="panel-body">
 							<div class="float">
-								<asset:image src="apple-touch-icon-retina.png" alt="temp icon" />
+								<asset:image
+									src="candidates/${fieldValue(bean: candidateInstance, field: "id")}.jpg"
+									alt="temp icon" />
 							</div>
 
-							<strong>Address:</strong>
-							${fieldValue(bean: candidateInstance, field: "address")}<br /> <strong>City:</strong>
-							${fieldValue(bean: candidateInstance, field: "city")}<br /> <strong>State:</strong>
-							${fieldValue(bean: candidateInstance, field: "state")}<br /> <strong>Zip
-								Code:</strong>
-							${fieldValue(bean: candidateInstance, field: "zipCode")}<br /> <strong>Email
-								Address:</strong>
-							${fieldValue(bean: candidateInstance, field: "emailAddress")}<br />
-							<strong>Phone Number:</strong>
-							${fieldValue(bean: candidateInstance, field: "phoneNumber")}<br />
-							<strong>Skills:</strong>
-							${fieldValue(bean: candidateInstance, field: "skills")}
+							<div class="block black-text">
+								<strong>Address:</strong>
+								${fieldValue(bean: candidateInstance, field: "address")}<br /> <strong>City:</strong>
+								${fieldValue(bean: candidateInstance, field: "city")}<br /> <strong>State:</strong>
+								${fieldValue(bean: candidateInstance, field: "state")}<br /> <strong>Zip
+									Code:</strong>
+								${fieldValue(bean: candidateInstance, field: "zipCode")}<br /> <strong>Email
+									Address:</strong>
+								${fieldValue(bean: candidateInstance, field: "emailAddress")}<br />
+								<strong>Phone Number:</strong>
+								${fieldValue(bean: candidateInstance, field: "phoneNumber")}<br />
+								<strong>Skills:</strong>
+								${fieldValue(bean: candidateInstance, field: "skills")}
+							</div>
 						</div>
 
 					</div>
 				</g:link>
 
 			</g:each>
-			<g:actionSubmit value="confirmRequest" />
+			<g:actionSubmit value="Submit Request" action="confirmRequest" />
 		</g:form>
 
 		<div class="pagination">
