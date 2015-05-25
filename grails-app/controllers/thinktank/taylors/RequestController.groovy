@@ -14,7 +14,7 @@ class RequestController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	
-	def springSecurityService
+	def candidateService
 	
 	@Secured(['ROLE_ADMIN'])
 	def index(Integer max) {
@@ -28,31 +28,9 @@ class RequestController {
     }
 	
 	@Secured(['ROLE_USER'])
-	def submitRequest(String firstCandidate, 
-					  String secondCandidate, 
-					  String thirdCandidate) {
-					  
-		def clientId = springSecurityService.currentUser.clientId
-		
-		def Request candidateRequest = new Request()
-		
-		candidateRequest.candidateId = firstCandidate
-		candidateRequest.clientId = clientId
-		candidateRequest.dateRequested = new Date()
-		candidateRequest.save()
-		
-		candidateRequest = new Request()
-		candidateRequest.candidateId = secondCandidate
-		candidateRequest.clientId = clientId
-		candidateRequest.dateRequested = new Date()
-		candidateRequest.save()
-		
-		candidateRequest = new Request()
-		candidateRequest.candidateId = thirdCandidate
-		candidateRequest.clientId = clientId
-		candidateRequest.dateRequested = new Date()
-		candidateRequest.save()
-		
+	def submitRequest() {
+		//put try catch block
+		candidateService.saveRequest(params)		
 	}
     
     @Transactional

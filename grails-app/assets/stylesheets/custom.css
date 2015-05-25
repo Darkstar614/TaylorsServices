@@ -201,3 +201,12 @@ input[type=checkbox] {
 .black-text {
 	color: black;
 }
+
+.cellspace {
+	border-spacing: 15px;
+	border-collapse: separate;
+}
+
+.odd {
+	background-color: #ddd;
+}

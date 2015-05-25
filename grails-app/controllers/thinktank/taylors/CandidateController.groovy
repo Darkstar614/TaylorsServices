@@ -10,109 +10,122 @@ import grails.transaction.Transactional
 @Secured(['ROLE_USER', 'ROLE_ADMIN'])
 class CandidateController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Candidate.list(params), model:[candidateInstanceCount: Candidate.count()]
-    }
-	
-    def show(Candidate candidateInstance) {
-        respond candidateInstance
-    }
+	def candidateService
 
-    def create() {
-        respond new Candidate(params)
-    }
-	
+	def index(Integer max) {
+		params.max = Math.min(max ?: 10, 100)
+		respond Candidate.list(params), model:[candidateInstanceCount: Candidate.count()]
+	}
+
+	def show(Candidate candidateInstance) {
+		respond candidateInstance
+	}
+
+	def create() {
+		respond new Candidate(params)
+	}
+
 	def confirmRequest() {
-		def checkedCandidates = params.list('requestCandidate')
-		
-		def selectedCandidates = Candidate.getAll(checkedCandidates)
-		
+		def selectedCandidates = candidateService.getSelectedCandidates(params)
+
 		if (selectedCandidates.size() > 3) {
-			flash.message = "Please select no more than 3 candidates"	
+			flash.message = "Please select no more than 3 candidates"
 			redirect view:'index'
 		}
 		[candidatesList:selectedCandidates]
+
 	}
 
-    @Transactional
-    def save(Candidate candidateInstance) {
-        if (candidateInstance == null) {
-            notFound()
-            return
-        }
+	@Transactional
+	def save(Candidate candidateInstance) {
+		if (candidateInstance == null) {
+			notFound()
+			return
+		}
 
-        if (candidateInstance.hasErrors()) {
-            respond candidateInstance.errors, view:'create'
-            return
-        }
+		if (candidateInstance.hasErrors()) {
+			respond candidateInstance.errors, view:'create'
+			return
+		}
 
-        candidateInstance.save flush:true
+		candidateInstance.save flush:true
 
-        confirmRequest.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'candidate.label', default: 'Candidate'), candidateInstance.id])
-                redirect candidateInstance
-            }
-            '*' { respond candidateInstance, [status: CREATED] }
-        }
-    }
+		confirmRequest.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.created.message', args: [
+					message(code: 'candidate.label', default: 'Candidate'),
+					candidateInstance.id
+				])
+				redirect candidateInstance
+			}
+			'*' { respond candidateInstance, [status: CREATED] }
+		}
+	}
 
-    def edit(Candidate candidateInstance) {
-        respond candidateInstance
-    }
+	def edit(Candidate candidateInstance) {
+		respond candidateInstance
+	}
 
-    @Transactional
-    def update(Candidate candidateInstance) {
-        if (candidateInstance == null) {
-            notFound()
-            return
-        }
+	@Transactional
+	def update(Candidate candidateInstance) {
+		if (candidateInstance == null) {
+			notFound()
+			return
+		}
 
-        if (candidateInstance.hasErrors()) {
-            respond candidateInstance.errors, view:'edit'
-            return
-        }
+		if (candidateInstance.hasErrors()) {
+			respond candidateInstance.errors, view:'edit'
+			return
+		}
 
-        candidateInstance.save flush:true
+		candidateInstance.save flush:true
 
-        confirmRequest.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Candidate.label', default: 'Candidate'), candidateInstance.id])
-                redirect candidateInstance
-            }
-            '*'{ respond candidateInstance, [status: OK] }
-        }
-    }
+		confirmRequest.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.updated.message', args: [
+					message(code: 'Candidate.label', default: 'Candidate'),
+					candidateInstance.id
+				])
+				redirect candidateInstance
+			}
+			'*'{ respond candidateInstance, [status: OK] }
+		}
+	}
 
-    @Transactional
-    def delete(Candidate candidateInstance) {
+	@Transactional
+	def delete(Candidate candidateInstance) {
 
-        if (candidateInstance == null) {
-            notFound()
-            return
-        }
+		if (candidateInstance == null) {
+			notFound()
+			return
+		}
 
-        candidateInstance.delete flush:true
+		candidateInstance.delete flush:true
 
-        confirmRequest.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Candidate.label', default: 'Candidate'), candidateInstance.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
-    }
+		confirmRequest.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.deleted.message', args: [
+					message(code: 'Candidate.label', default: 'Candidate'),
+					candidateInstance.id
+				])
+				redirect action:"index", method:"GET"
+			}
+			'*'{ render status: NO_CONTENT }
+		}
+	}
 
-    protected void notFound() {
-        confirmRequest.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'candidate.label', default: 'Candidate'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*'{ render status: NOT_FOUND }
-        }
-    }
+	protected void notFound() {
+		confirmRequest.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.not.found.message', args: [
+					message(code: 'candidate.label', default: 'Candidate'),
+					params.id
+				])
+				redirect action: "index", method: "GET"
+			}
+			'*'{ render status: NOT_FOUND }
+		}
+	}
 }

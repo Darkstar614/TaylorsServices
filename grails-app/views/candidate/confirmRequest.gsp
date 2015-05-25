@@ -18,19 +18,18 @@
 		</g:if>
 		<g:each in="${candidatesList}" var="candidate">
 			<li>
-				${candidate.firstName}
-				${candidate.lastName}
+				${candidate.firstName} ${candidate.lastName}
 			</li>
-			
+
 			<br />
 		</g:each>
 		<g:form controller="request" action="submitRequest">
-		<g:hiddenField name="firstCandidate" value="${candidatesList[0].id}" />
-		<g:hiddenField name="secondCandidate" value="${candidatesList[1].id}" />
-		<g:hiddenField name="thirdCandidate" value="${candidatesList[2].id}" />
-		<g:actionSubmit value="Submit Request" action="submitRequest"/>
+			<g:each in="${candidatesList}" var="candidate">
+				<g:hiddenField name="candidates" value="${candidate.id}" />
+			</g:each>
+			<g:actionSubmit value="Submit Request" action="submitRequest" />
 		</g:form>
-		
+
 	</div>
 </body>
 </html>

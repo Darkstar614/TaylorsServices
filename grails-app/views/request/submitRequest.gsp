@@ -11,5 +11,8 @@
 </head>
 <body>
 		<h1>Request successfully submitted!</h1>
+		<div>
+		<p>Remember: Only your most recent candidate request will be reviewed by a TPS manager.</p>
+		</div>
 </body>
 </html>
