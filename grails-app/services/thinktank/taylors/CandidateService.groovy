@@ -19,7 +19,23 @@ class CandidateService {
 		candidate.zipCode = '43010'
 		candidate.emailAddress = 'test@test.com'
 		candidate.phoneNumber = '1234567890'
-		candidate.skills = 'bowhunting, computer hacking, bo staff'
+		
+		def allSkills = ['bowhunting', 'hacking', 'bo staff', 'programming', 'database', 'accounting']
+		def skillSet = []
+		def random = new Random()
+		
+		while (skillSet.size() < 3) {
+			def i = random.nextInt(allSkills.size())
+			if (!skillSet.contains(allSkills[i])) {
+				skillSet << allSkills[i]
+			}
+		}
+		
+		candidate.skills = skillSet.join(", ")
+		candidate.experience = 'Has worked in lumber yard. Can use various woodwoking tools.'
+		candidate.education = 'Bachelor\'s of Science'
+		candidate.salary = '$25,000'
+		candidate.onAssignment = false
 		candidate.save()
 	}
 	
@@ -34,17 +50,14 @@ class CandidateService {
 		
 		def clientId = springSecurityService.currentUser.clientId
 		
-		def Request candidateRequest	
-		
-		def UUID uuid = UUID.randomUUID()
+		def candidatesRequest = new Request(dateRequested: new Date(), clientId: clientId)
+		def candidate
 		
 		for (candidateId in candidates) {
-			candidateRequest = new Request()
-			candidateRequest.requestNumber = uuid
-			candidateRequest.candidateId = candidateId
-			candidateRequest.clientId = clientId
-			candidateRequest.dateRequested = new Date()
-			candidateRequest.save()
+			candidate = new RequestDetail(candidateId: candidateId)
+			candidatesRequest.addToRequestDetail(candidate)
 		}
+		
+		candidatesRequest.save()
 	}
 }

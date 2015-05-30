@@ -22,14 +22,14 @@
 			<thead>
 				<tr>
 
-					<g:sortableColumn property="requestNumber"
-						title="${message(code: 'request.requestNumber.label', default: 'Request Number')}" />
+					<g:sortableColumn property="id"
+						title="${message(code: 'request.id.label', default: 'Request Number')}" />
 
 					<g:sortableColumn property="candidateId"
-						title="${message(code: 'request.candidateId.label', default: 'Candidate Id')}" />
+						title="${message(code: 'request.requestDetail.candidateId.label', default: 'Candidate Id')}" />
 
 					<g:sortableColumn property="clientId"
-						title="${message(code: 'request.clientId.label', default: 'Client Id')}" />
+						title="${message(code: 'request.requestDetail.clientId.label', default: 'Client Id')}" />
 
 					<g:sortableColumn property="dateRequested"
 						title="${message(code: 'request.dateRequested.label', default: 'Date Requested')}" />
@@ -43,11 +43,11 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
 						<td>
-							${fieldValue(bean: requestInstance, field: "requestNumber")}
+							${fieldValue(bean: requestInstance, field: "id")}
 						</td>
 
 						<td><g:link action="show" id="${requestInstance.id}">
-								${fieldValue(bean: requestInstance, field: "candidateId")}
+								${fieldValue(bean: requestInstance, field: "requestDetail.candidateId")}
 							</g:link></td>
 
 						<td>

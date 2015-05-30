@@ -37,7 +37,7 @@ class CandidateController {
 		[candidatesList:selectedCandidates]
 
 	}
-
+	
 	@Transactional
 	def save(Candidate candidateInstance) {
 		if (candidateInstance == null) {

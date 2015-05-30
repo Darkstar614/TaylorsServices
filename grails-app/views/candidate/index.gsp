@@ -35,31 +35,35 @@
 
 							</h4>
 							<div class="right-align">
-								<g:checkBox name="requestCandidate"
-									value="${fieldValue(bean: candidateInstance, field: "id")}"
-									checked="false" />
+								<sec:ifAnyGranted roles="ROLE_USER">
+									<g:checkBox name="requestCandidate"
+										value="${fieldValue(bean: candidateInstance, field: "id")}"
+										checked="false" />
+								</sec:ifAnyGranted>
 							</div>
 						</div>
 						<div class="panel-body">
-							<div class="float">
+							<div class="float image-padding">
 								<asset:image
 									src="candidates/${fieldValue(bean: candidateInstance, field: "id")}.jpg"
 									alt="temp icon" />
 							</div>
 
 							<div class="block black-text">
-								<strong>Address:</strong>
-								${fieldValue(bean: candidateInstance, field: "address")}<br /> <strong>City:</strong>
+								<strong>City:</strong>
 								${fieldValue(bean: candidateInstance, field: "city")}<br /> <strong>State:</strong>
-								${fieldValue(bean: candidateInstance, field: "state")}<br /> <strong>Zip
-									Code:</strong>
-								${fieldValue(bean: candidateInstance, field: "zipCode")}<br /> <strong>Email
+								${fieldValue(bean: candidateInstance, field: "state")}<br /> <strong>Email
 									Address:</strong>
 								${fieldValue(bean: candidateInstance, field: "emailAddress")}<br />
 								<strong>Phone Number:</strong>
 								${fieldValue(bean: candidateInstance, field: "phoneNumber")}<br />
+								<strong>Experience:</strong>
+								${fieldValue(bean: candidateInstance, field: "experience")}<br />
 								<strong>Skills:</strong>
-								${fieldValue(bean: candidateInstance, field: "skills")}
+								${fieldValue(bean: candidateInstance, field: "skills")}<br /> <strong>Education:</strong>
+								${fieldValue(bean: candidateInstance, field: "education")}<br />
+								<strong>Salary:</strong>
+								${fieldValue(bean: candidateInstance, field: "salary")}<br />
 							</div>
 						</div>
 
@@ -67,7 +71,9 @@
 				</g:link>
 
 			</g:each>
-			<g:actionSubmit value="Submit Request" action="confirmRequest" />
+			<sec:ifAnyGranted roles="ROLE_USER">
+				<g:actionSubmit value="Submit Request" action="confirmRequest" />
+			</sec:ifAnyGranted>
 		</g:form>
 
 		<div class="pagination">

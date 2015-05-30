@@ -14,6 +14,10 @@ class Candidate {
 	String emailAddress
 	String phoneNumber
 	String skills
+	String experience
+	String education
+	String salary
+	boolean onAssignment
 	
 
     static constraints = {
@@ -28,6 +32,10 @@ class Candidate {
 		emailAddress email:true
 		phoneNumber size: 10..10, blank:false, nullable: false
 		skills size: 1..100, blank:false, nullable: false
+		experience size: 0..500, blank: false, nullable: false
+		education size: 1..30, blank: false, nullable: false
+		salary size: 1..10, blank: false, nullable: false
+		onAssignment blank: false, nullable: false
     }
 	
 	static mapping = {
