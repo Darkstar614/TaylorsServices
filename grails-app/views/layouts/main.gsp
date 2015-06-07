@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}"
 	type="image/x-icon">
-<g:javascript library="jquery" />
+<asset:javascript src="jquery-1.11.3.min.js" />
 <asset:stylesheet src="bootstrap.min.css" />
 <asset:stylesheet src="custom.css" />
 <asset:javascript src="bootstrap.js" />

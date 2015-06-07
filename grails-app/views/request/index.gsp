@@ -59,6 +59,7 @@
 					<strong>Candidates:</strong>
 					<table class="cellspace">
 						<tbody>
+						<g:if test="${requestInstance.requestDetail[0] != null}">
 							<tr>
 								<td>
 									${requestInstance.requestDetail[0].candidate.firstName}
@@ -67,6 +68,7 @@
 									${requestInstance.requestDetail[0].candidate.lastName}
 								</td>
 							</tr>
+							</g:if>
 							<g:if test="${requestInstance.requestDetail[1] != null}">
 
 								<tr>

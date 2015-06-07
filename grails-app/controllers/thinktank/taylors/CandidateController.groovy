@@ -45,6 +45,10 @@ class CandidateController {
 			flash.message = "Please select no more than 3 candidates"
 			redirect view:'index'
 		}
+		if (selectedCandidates.size() < 1) {
+			flash.message = "Please select at least 1 candidate"
+			redirect view:'index'
+		}
 		[candidatesList:selectedCandidates]
 
 	}
