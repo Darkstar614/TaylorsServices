@@ -22,55 +22,76 @@
 			</div>
 		</g:if>
 
+		<div class="candidateFilter">
+			<h3>Filter By Skills:</h3>
+			<label> <input type="checkbox" rel="bowhunting" />
+				Bowhunting
+			</label> <label> <input type="checkbox" rel="database" /> Database
+			</label> <label> <input type="checkbox" rel="programming" />
+				Programming
+			</label> <label> <input type="checkbox" rel="accounting" />
+				Accounting
+			</label> <label> <input type="checkbox" rel="hacking" /> Hacking
+			</label> <label> <input type="checkbox" rel="bo-staff" /> Bo-staff
+			</label>
+		</div>
+
 		<g:form controller="candidate" action="confirmRequest">
-			<g:each in="${candidateInstanceList}" status="i"
-				var="candidateInstance">
+			<ul class="results">
+				<g:each in="${candidateInstanceList}" status="i"
+					var="candidateInstance">
+					<li class="${candidateInstance.skills.replaceAll(',', '')}"><g:link
+							action="show" id="${candidateInstance.id}">
+							<div class="panel panel-info hover">
+								<div class="panel-heading">
+									<sec:ifAnyGranted roles="ROLE_USER">
+										<h4 class="float">
+											${fieldValue(bean: candidateInstance, field: "firstName")}
+											${fieldValue(bean: candidateInstance, field: "lastName")}
+										</h4>
+										<div class="right-align">
+											<g:checkBox name="requestCandidate"
+												value="${fieldValue(bean: candidateInstance, field: "id")}"
+												checked="false" />
+										</div>
+									</sec:ifAnyGranted>
 
-				<g:link action="show" id="${candidateInstance.id}">
-					<div class="panel panel-info hover">
-						<div class="panel-heading">
-							<h4 class="float">
-								${fieldValue(bean: candidateInstance, field: "firstName")}
-								${fieldValue(bean: candidateInstance, field: "lastName")}
+									<sec:ifAnyGranted roles="ROLE_ADMIN">
+										<h4>
+											${fieldValue(bean: candidateInstance, field: "firstName")}
+											${fieldValue(bean: candidateInstance, field: "lastName")}
+										</h4>
+									</sec:ifAnyGranted>
+								</div>
+								<div class="panel-body">
+									<div class="float image-padding">
+										<asset:image
+											src="candidates/${fieldValue(bean: candidateInstance, field: "id")}.jpg"
+											alt="temp icon" />
+									</div>
 
-							</h4>
-							<div class="right-align">
-								<sec:ifAnyGranted roles="ROLE_USER">
-									<g:checkBox name="requestCandidate"
-										value="${fieldValue(bean: candidateInstance, field: "id")}"
-										checked="false" />
-								</sec:ifAnyGranted>
+									<div class="block black-text">
+										<strong>City:</strong>
+										${fieldValue(bean: candidateInstance, field: "city")}<br /> <strong>State:</strong>
+										${fieldValue(bean: candidateInstance, field: "state")}<br /> <strong>Email
+											Address:</strong>
+										${fieldValue(bean: candidateInstance, field: "emailAddress")}<br />
+										<strong>Phone Number:</strong>
+										${fieldValue(bean: candidateInstance, field: "phoneNumber")}<br />
+										<strong>Experience:</strong>
+										${fieldValue(bean: candidateInstance, field: "experience")}<br />
+										<strong>Skills:</strong>
+										${fieldValue(bean: candidateInstance, field: "skills")}<br /> <strong>Education:</strong>
+										${fieldValue(bean: candidateInstance, field: "education")}<br />
+										<strong>Salary:</strong>
+										${fieldValue(bean: candidateInstance, field: "salary")}<br />
+									</div>
+								</div>
+
 							</div>
-						</div>
-						<div class="panel-body">
-							<div class="float image-padding">
-								<asset:image
-									src="candidates/${fieldValue(bean: candidateInstance, field: "id")}.jpg"
-									alt="temp icon" />
-							</div>
-
-							<div class="block black-text">
-								<strong>City:</strong>
-								${fieldValue(bean: candidateInstance, field: "city")}<br /> <strong>State:</strong>
-								${fieldValue(bean: candidateInstance, field: "state")}<br /> <strong>Email
-									Address:</strong>
-								${fieldValue(bean: candidateInstance, field: "emailAddress")}<br />
-								<strong>Phone Number:</strong>
-								${fieldValue(bean: candidateInstance, field: "phoneNumber")}<br />
-								<strong>Experience:</strong>
-								${fieldValue(bean: candidateInstance, field: "experience")}<br />
-								<strong>Skills:</strong>
-								${fieldValue(bean: candidateInstance, field: "skills")}<br /> <strong>Education:</strong>
-								${fieldValue(bean: candidateInstance, field: "education")}<br />
-								<strong>Salary:</strong>
-								${fieldValue(bean: candidateInstance, field: "salary")}<br />
-							</div>
-						</div>
-
-					</div>
-				</g:link>
-
-			</g:each>
+						</g:link></li>
+				</g:each>
+			</ul>
 			<sec:ifAnyGranted roles="ROLE_USER">
 				<g:actionSubmit value="Submit Request" action="confirmRequest" />
 			</sec:ifAnyGranted>

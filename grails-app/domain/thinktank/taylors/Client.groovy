@@ -12,6 +12,7 @@ class Client {
 	String phoneNumber;
 	Date partnersSince
 	
+	static hasMany = [request: Request]
 
     static constraints = {
 		companyName size: 5..20, blank: false, nullable: false

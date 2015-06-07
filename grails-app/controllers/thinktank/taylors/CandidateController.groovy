@@ -7,26 +7,37 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-@Secured(['ROLE_USER', 'ROLE_ADMIN'])
 class CandidateController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
 	def candidateService
+	def springSecurityService
 
+	@Secured(['ROLE_USER', 'ROLE_ADMIN'])
 	def index(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
 		respond Candidate.list(params), model:[candidateInstanceCount: Candidate.count()]
 	}
 
+	@Secured(['ROLE_USER', 'ROLE_ADMIN'])
 	def show(Candidate candidateInstance) {
 		respond candidateInstance
 	}
+	
+	@Secured(['ROLE_CAN'])
+	def profile() {
+		def candidateId = springSecurityService.currentUser.candidateId
+		def candidateInstance = Candidate.findById(candidateId)
+		respond candidateInstance, view:'show'
+	}
 
+	@Secured(['ROLE_USER', 'ROLE_ADMIN'])
 	def create() {
 		respond new Candidate(params)
 	}
 
+	@Secured(['ROLE_USER'])
 	def confirmRequest() {
 		def selectedCandidates = candidateService.getSelectedCandidates(params)
 
@@ -39,6 +50,7 @@ class CandidateController {
 	}
 	
 	@Transactional
+	@Secured(['ROLE_ADMIN', 'ROLE_CAN'])
 	def save(Candidate candidateInstance) {
 		if (candidateInstance == null) {
 			notFound()
@@ -64,11 +76,13 @@ class CandidateController {
 		}
 	}
 
+	@Secured(['ROLE_ADMIN', 'ROLE_CAN'])
 	def edit(Candidate candidateInstance) {
 		respond candidateInstance
 	}
 
 	@Transactional
+	@Secured(['ROLE_ADMIN', 'ROLE_CAN'])
 	def update(Candidate candidateInstance) {
 		if (candidateInstance == null) {
 			notFound()
@@ -95,6 +109,7 @@ class CandidateController {
 	}
 
 	@Transactional
+	@Secured(['ROLE_ADMIN'])
 	def delete(Candidate candidateInstance) {
 
 		if (candidateInstance == null) {

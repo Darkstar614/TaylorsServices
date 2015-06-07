@@ -23,7 +23,7 @@
 </head>
 <body>
 	<div class="container">
-		<asset:image src="tps_logo.png" alt="Taylor's" />
+		<asset:image src="tps_logo.png" alt="Taylor's" class="img-responsive"/>
 		<nav class="navbar navbar-inverse navbar-justified">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -38,17 +38,60 @@
 
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="${ pageProperty(name:'meta.nav').equals( 'news' ) ? 'active' : null }"><a href="/News/">Home<span
-								class="sr-only">(current)</span></a></li>
-						<li class="${ pageProperty(name:'meta.nav').equals( 'client' ) ? 'active' : null }"><a href="/Client/">Clients</a></li>
-						<li class="${ pageProperty(name:'meta.nav').equals( 'candidate' ) ? 'active' : null }"><a href="/Candidate/">Candidates</a></li>
-						<li class="${ pageProperty(name:'meta.nav').equals( 'requests' ) ? 'active' : null }"><a href="/Request/">Requests</a></li>
-						<li class="${ pageProperty(name:'meta.nav').equals( 'about' ) ? 'active' : null }"><a href="/about/">About</a></li>
-					</ul>
+					<sec:ifAnyGranted roles="ROLE_ADMIN">
+						<ul class="nav navbar-nav">
+							<li
+								class="${ pageProperty(name:'meta.nav').equals( 'news' ) ? 'active' : null }"><a
+								href="/News/">Home<span class="sr-only">(current)</span></a></li>
+							<li
+								class="${ pageProperty(name:'meta.nav').equals( 'client' ) ? 'active' : null }"><a
+								href="/Client/">Clients</a></li>
+							<li
+								class="${ pageProperty(name:'meta.nav').equals( 'candidate' ) ? 'active' : null }"><a
+								href="/Candidate/">Candidates</a></li>
+							<li
+								class="${ pageProperty(name:'meta.nav').equals( 'requests' ) ? 'active' : null }"><a
+								href="/Request/">Requests</a></li>
+							<li
+								class="${ pageProperty(name:'meta.nav').equals( 'about' ) ? 'active' : null }"><a
+								href="/about/">About</a></li>
+						</ul>
+					</sec:ifAnyGranted>
+
+					<sec:ifAnyGranted roles="ROLE_USER">
+						<ul class="nav navbar-nav">
+							<li
+								class="${ pageProperty(name:'meta.nav').equals( 'news' ) ? 'active' : null }"><a
+								href="/News/">Home<span class="sr-only">(current)</span></a></li>
+							<li
+								class="${ pageProperty(name:'meta.nav').equals( 'client' ) ? 'active' : null }"><a
+								href="/Client/Profile/">Client Profile</a></li>
+							<li
+								class="${ pageProperty(name:'meta.nav').equals( 'candidate' ) ? 'active' : null }"><a
+								href="/Candidate/">Candidates</a></li>
+							<li
+								class="${ pageProperty(name:'meta.nav').equals( 'about' ) ? 'active' : null }"><a
+								href="/about/">About</a></li>
+						</ul>
+					</sec:ifAnyGranted>
+
+					<sec:ifAnyGranted roles="ROLE_CAN">
+						<ul class="nav navbar-nav">
+							<li
+								class="${ pageProperty(name:'meta.nav').equals( 'news' ) ? 'active' : null }"><a
+								href="/News/">Home<span class="sr-only">(current)</span></a></li>
+							<li
+								class="${ pageProperty(name:'meta.nav').equals( 'candidate' ) ? 'active' : null }"><a
+								href="/Candidate/Profile/">Candidate Profile</a></li>
+							<li
+								class="${ pageProperty(name:'meta.nav').equals( 'about' ) ? 'active' : null }"><a
+								href="/about/">About</a></li>
+						</ul>
+					</sec:ifAnyGranted>
 					<ul class="nav navbar-nav navbar-right">
-						<li><g:remoteLink class="logout" controller="logout" method="post" asynchronous="false" onSuccess="location.reload()">Logout</g:remoteLink>
-</li>
+						<li><g:remoteLink class="logout" controller="logout"
+								method="post" asynchronous="false" onSuccess="location.reload()">Logout</g:remoteLink>
+						</li>
 					</ul>
 				</div>
 			</div>

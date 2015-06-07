@@ -11,7 +11,7 @@ class NewsController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-	@Secured(['ROLE_USER', 'ROLE_ADMIN'])
+	@Secured(['ROLE_USER', 'ROLE_ADMIN', 'ROLE_CAN'])
     def index(Integer max) {
         params.max = Math.min(max ?: 6, 100)
         respond News.list(params), model:[newsInstanceCount: News.count()]

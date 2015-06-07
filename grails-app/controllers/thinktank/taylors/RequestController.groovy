@@ -21,6 +21,25 @@ class RequestController {
         params.max = Math.min(max ?: 10, 100)
         respond Request.list(params), model:[requestInstanceCount: Request.count()]
     }
+	@Secured(['ROLE_ADMIN'])
+	def approveRequest() {
+		def requestId = params.list('requestId')
+		def requestToApprove = Request.findById(requestId)
+		requestToApprove.approved = 'Y'
+		requestToApprove.save(flush: true)
+		flash.approve = "Request #" + requestId[0].toString() + " Approved."
+		redirect view:'index'
+	}
+	
+	@Secured(['ROLE_ADMIN'])
+	def denyRequest() {
+		def requestId = params.list('requestId')
+		def requestToDeny = Request.findById(requestId)
+		requestToDeny.approved = 'D'
+		requestToDeny.save(flush: true)
+		flash.deny = "Request #" + requestId[0].toString() + " Denied."
+		redirect view:'index'
+	}
 	
 	@Secured(['ROLE_ADMIN'])
     def show(Request requestInstance) {

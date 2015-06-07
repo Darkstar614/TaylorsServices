@@ -54,7 +54,7 @@
 						</div>
 					</sec:ifAnyGranted>
 
-					<sec:ifAnyGranted roles="ROLE_USER">
+					<sec:ifAnyGranted roles="ROLE_USER,ROLE_CAN">
 						<div>
 							<strong>Author:</strong>
 							${fieldValue(bean: newsInstance, field: "author")}

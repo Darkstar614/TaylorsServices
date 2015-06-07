@@ -173,7 +173,7 @@ div.pagination a:hover, div.pagination a:active {
 	color: #FFF;
 }
 
-input[type=checkbox] {
+.results input[type=checkbox] {
 	width: 30px;
 	height: 30px;
 }
@@ -187,6 +187,10 @@ input[type=checkbox] {
 }
 
 #list-candidate a:hover {
+	text-decoration: none;
+}
+
+#list-client a:hover {
 	text-decoration: none;
 }
 
@@ -209,4 +213,35 @@ input[type=checkbox] {
 
 .odd {
 	background-color: #ddd;
+}
+
+.pad-right {
+	padding-right: 20px;
+}
+
+.pad-left {
+	padding-left: 20px;
+}
+
+.pad-bottom {
+	padding-bottom: 10px;
+}
+
+.clear-both {
+	clear: both;
+}
+
+.link-font-increase {
+	font-size: 35px;
+	text-transform: uppercase;
+}
+
+ul
+{
+    list-style-type: none;
+    padding-left:0;
+}
+
+.message-green {
+	color: #00CC00;
 }

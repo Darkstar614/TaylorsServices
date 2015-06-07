@@ -48,7 +48,7 @@
 				<g:form url="[resource:clientInstance, action:'delete']"
 					method="DELETE">
 					<fieldset class="buttons">
-						<g:link class="edit edit-font-increase" action="edit"
+						<g:link class="edit link-font-increase pad-right" action="edit"
 							resource="${clientInstance}">
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>

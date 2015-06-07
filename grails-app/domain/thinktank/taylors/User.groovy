@@ -7,6 +7,7 @@ class User {
 	String username
 	String password
 	String clientId
+	String candidateId
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked

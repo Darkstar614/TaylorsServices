@@ -7,8 +7,7 @@
 		<g:message code="client.companyName.label" default="Company Name" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="companyName" maxlength="20" required="" value="${clientInstance?.companyName}"/>
-
+	<g:field type="text" name="companyName" readonly="readonly" value="${clientInstance?.companyName}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: clientInstance, field: 'summary', 'error')} ">
@@ -16,7 +15,7 @@
 		<g:message code="client.summary.label" default="Summary" />
 		
 	</label>
-	<g:textArea name="summary" cols="40" rows="5" maxlength="500" value="${clientInstance?.summary}"/>
+	<g:textArea name="summary" cols="100" rows="15" maxlength="500" value="${clientInstance?.summary}"/>
 
 </div>
 

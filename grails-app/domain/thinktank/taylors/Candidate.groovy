@@ -19,7 +19,6 @@ class Candidate {
 	String salary
 	boolean onAssignment
 	
-
     static constraints = {
 		
 		firstName size: 1..20, blank: false, nullable: false

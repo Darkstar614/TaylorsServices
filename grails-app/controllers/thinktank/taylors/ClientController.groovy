@@ -7,25 +7,37 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-@Secured(['ROLE_ADMIN'])
 class ClientController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+	def springSecurityService
+	
+	@Secured(['ROLE_ADMIN'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Client.list(params), model:[clientInstanceCount: Client.count()]
     }
 
+	@Secured(['ROLE_ADMIN'])
     def show(Client clientInstance) {
         respond clientInstance
     }
+	
+	@Secured(['ROLE_USER'])
+	def profile() {
+		def clientId = springSecurityService.currentUser.clientId
+		def clientInstance = Client.findById(clientId)
+		respond clientInstance, view:'show'
+	}
 
+	@Secured(['ROLE_ADMIN'])
     def create() {
         respond new Client(params)
     }
 
     @Transactional
+	@Secured(['ROLE_ADMIN'])
     def save(Client clientInstance) {
         if (clientInstance == null) {
             notFound()
@@ -48,11 +60,13 @@ class ClientController {
         }
     }
 
+	@Secured(['ROLE_ADMIN'])
     def edit(Client clientInstance) {
         respond clientInstance
     }
 
     @Transactional
+	@Secured(['ROLE_ADMIN'])
     def update(Client clientInstance) {
         if (clientInstance == null) {
             notFound()
@@ -76,6 +90,7 @@ class ClientController {
     }
 
     @Transactional
+	@Secured(['ROLE_ADMIN'])
     def delete(Client clientInstance) {
 
         if (clientInstance == null) {

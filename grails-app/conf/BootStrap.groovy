@@ -13,17 +13,79 @@ class BootStrap {
 
 	def init = { servletContext ->
 		def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
-		def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
+		def clientRole = new Role(authority: 'ROLE_USER').save(flush: true)
+		def candidateRole = new Role(authority: 'ROLE_CAN').save(flush: true)
 
-		def testUser = new User(username: 'manager', password:'thinktank55', clientId: 0)
+		def testUser = new User(username: 'manager', password:'thinktank55', clientId: 0, candidateId: 0)
 		testUser.save(flush: true)
 
 		UserRole.create testUser, adminRole, true
 
-		testUser = new User(username: 'tom', password:'password', clientId: 1)
+		//clients
+		////////////////////////////////////////////////////////////////////////////
+		
+		testUser = new User(username: 'client1', password:'password', clientId: 1, candidateId: 0)
 		testUser.save(flush: true)
 
-		UserRole.create testUser, userRole, true
+		UserRole.create testUser, clientRole, true
+		
+		testUser = new User(username: 'client2', password:'password', clientId: 2, candidateId: 0)
+		testUser.save(flush: true)
+
+		UserRole.create testUser, clientRole, true
+		
+		testUser = new User(username: 'client3', password:'password', clientId: 3, candidateId: 0)
+		testUser.save(flush: true)
+
+		UserRole.create testUser, clientRole, true
+		
+		testUser = new User(username: 'client4', password:'password', clientId: 4, candidateId: 0)
+		testUser.save(flush: true)
+
+		UserRole.create testUser, clientRole, true
+		
+		testUser = new User(username: 'client5', password:'password', clientId: 5, candidateId: 0)
+		testUser.save(flush: true)
+
+		UserRole.create testUser, clientRole, true
+		
+		testUser = new User(username: 'client6', password:'password', clientId: 6, candidateId: 0)
+		testUser.save(flush: true)
+
+		UserRole.create testUser, clientRole, true
+		
+		//candidates
+		////////////////////////////////////////////////////////////////////////
+		
+		testUser = new User(username: 'candidate1', password:'password', clientId: 0, candidateId: 1)
+		testUser.save(flush: true)
+
+		UserRole.create testUser, candidateRole, true
+		
+		testUser = new User(username: 'candidate2', password:'password', clientId: 0, candidateId: 2)
+		testUser.save(flush: true)
+
+		UserRole.create testUser, candidateRole, true
+		
+		testUser = new User(username: 'candidate3', password:'password', clientId: 0, candidateId: 3)
+		testUser.save(flush: true)
+
+		UserRole.create testUser, candidateRole, true
+		
+		testUser = new User(username: 'candidate4', password:'password', clientId: 0, candidateId: 4)
+		testUser.save(flush: true)
+
+		UserRole.create testUser, candidateRole, true
+		
+		testUser = new User(username: 'candidate5', password:'password', clientId: 0, candidateId: 5)
+		testUser.save(flush: true)
+
+		UserRole.create testUser, candidateRole, true
+		
+		testUser = new User(username: 'candidate6', password:'password', clientId: 0, candidateId: 6)
+		testUser.save(flush: true)
+
+		UserRole.create testUser, candidateRole, true
 		
 		if (News.count() == 0 ) {
 			// if no news in the database, create some test data

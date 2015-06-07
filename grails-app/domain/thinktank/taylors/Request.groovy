@@ -3,11 +3,11 @@ package thinktank.taylors
 class Request {
 
 	Date dateRequested
-	String clientId
+	char approved
 	
 	static hasMany = [requestDetail: RequestDetail]
+	static belongsTo = [client : Client]
 	
     static constraints = {
-		clientId blank: false, nullable: false
     }
 }

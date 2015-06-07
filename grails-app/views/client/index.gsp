@@ -34,7 +34,7 @@
 								alt="temp icon" />
 						</div>
 
-						<div class="block">
+						<div class="block black-text">
 							${fieldValue(bean: clientInstance, field: "summary")}
 							<br /> <strong>City:</strong>
 							${fieldValue(bean: clientInstance, field: "city")}

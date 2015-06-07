@@ -20,7 +20,7 @@ class CandidateService {
 		candidate.emailAddress = 'test@test.com'
 		candidate.phoneNumber = '1234567890'
 		
-		def allSkills = ['bowhunting', 'hacking', 'bo staff', 'programming', 'database', 'accounting']
+		def allSkills = ['bowhunting', 'hacking', 'bo-staff', 'programming', 'database', 'accounting']
 		def skillSet = []
 		def random = new Random()
 		
@@ -32,7 +32,7 @@ class CandidateService {
 		}
 		
 		candidate.skills = skillSet.join(", ")
-		candidate.experience = 'Has worked in lumber yard. Can use various woodwoking tools.'
+		candidate.experience = 'Has worked in lumber yard. Can use various woodworking tools.'
 		candidate.education = 'Bachelor\'s of Science'
 		candidate.salary = '$25,000'
 		candidate.onAssignment = false
@@ -50,12 +50,16 @@ class CandidateService {
 		
 		def clientId = springSecurityService.currentUser.clientId
 		
-		def candidatesRequest = new Request(dateRequested: new Date(), clientId: clientId)
-		def candidate
+		def candidatesRequest = new Request(dateRequested: new Date(), approved: 'N')
+		
+		candidatesRequest.setClient(Client.findById(clientId))
+		
+		def requestDetail
 		
 		for (candidateId in candidates) {
-			candidate = new RequestDetail(candidateId: candidateId)
-			candidatesRequest.addToRequestDetail(candidate)
+			requestDetail = new RequestDetail()
+			requestDetail.setCandidate(Candidate.findById(candidateId))
+			candidatesRequest.addToRequestDetail(requestDetail)
 		}
 		
 		candidatesRequest.save()
