@@ -7,7 +7,7 @@
 		<g:message code="client.companyName.label" default="Company Name" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field type="text" name="companyName" readonly="readonly" value="${clientInstance?.companyName}"/>
+	<g:field type="text" name="companyName" value="${clientInstance?.companyName}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: clientInstance, field: 'summary', 'error')} ">
@@ -79,6 +79,13 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:datePicker name="partnersSince" precision="day"  value="${clientInstance?.partnersSince}"  />
+</div>
 
+<div class="fieldcontain required">
+	<label for="cfile">
+		Client Image
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field type="file" name="cfile" accept=".jpg"/><p>**Image size must be 114 by 114 pixels</p>
 </div>
 

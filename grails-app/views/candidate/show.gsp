@@ -41,7 +41,7 @@
 					<br /> <strong>Zip Code:</strong>
 					${fieldValue(bean: candidateInstance, field: "zipCode")}
 					<br /> <strong>Phone:</strong>
-					${fieldValue(bean: candidateInstance, field: "phoneNumber")}
+					<span class="phone">${fieldValue(bean: candidateInstance, field: "phoneNumber")}</span>
 					<br /> <strong>Email:</strong>
 					${fieldValue(bean: candidateInstance, field: "emailAddress")}
 					<br /> <strong>Skills:</strong>

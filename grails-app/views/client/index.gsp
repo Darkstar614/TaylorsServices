@@ -19,6 +19,10 @@
 			</div>
 		</g:if>
 
+		<div class="right-align">
+			<g:link class="create link-font-increase-subtle" action="create">Create New Client</g:link>
+		</div>
+
 		<g:each in="${clientInstanceList}" status="i" var="clientInstance">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
@@ -28,10 +32,10 @@
 				</div>
 				<g:link action="show" id="${clientInstance.id}">
 					<div class="panel-body">
-						<div class="float">
-							<asset:image
-								src="clients/${fieldValue(bean: clientInstance, field: "id")}.jpg"
-								alt="temp icon" />
+						<div class="float pad-right">
+							<img
+								src="${resource(dir:'assets/clients',file:clientInstance.id.toString() + '.jpg')}"
+								alt="Client Image" />
 						</div>
 
 						<div class="block black-text">
@@ -44,10 +48,10 @@
 
 					</div>
 					<div class="panel-footer">
-						<div class="float">
-							<strong>Phone:</strong>
-							${fieldValue(bean: clientInstance, field: "phoneNumber")}
-							<br /> <strong>Email:</strong>
+						<div class="float black-text">
+							<strong>Phone:</strong> <span class="phone">
+								${fieldValue(bean: clientInstance, field: "phoneNumber")}
+							</span> <br /> <strong>Email:</strong>
 							${fieldValue(bean: clientInstance, field: "emailAddress")}
 						</div>
 						<br />

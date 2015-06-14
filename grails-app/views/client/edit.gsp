@@ -19,7 +19,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:clientInstance, action:'update']" method="PUT" >
+			<g:form url="[resource:clientInstance, action:'update']" method="PUT" enctype="multipart/form-data">
 				<g:hiddenField name="version" value="${clientInstance?.version}" />
 				<fieldset class="form">
 					<g:render template="form"/>

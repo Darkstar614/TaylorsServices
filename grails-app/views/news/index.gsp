@@ -19,6 +19,12 @@
 			</div>
 		</g:if>
 
+		<sec:ifAnyGranted roles="ROLE_ADMIN">
+			<div class="right-align">
+				<g:link class="create link-font-increase-subtle" action="create">Create New Post</g:link>
+			</div>
+		</sec:ifAnyGranted>
+
 
 		<g:each in="${newsInstanceList}" status="i" var="newsInstance">
 			<div class="panel panel-success">
