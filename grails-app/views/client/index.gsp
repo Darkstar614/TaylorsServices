@@ -24,7 +24,7 @@
 		</div>
 
 		<g:each in="${clientInstanceList}" status="i" var="clientInstance">
-			<div class="panel panel-primary">
+			<div class="panel panel-primary hover">
 				<div class="panel-heading">
 					<h4>
 						${fieldValue(bean: clientInstance, field: "companyName")}

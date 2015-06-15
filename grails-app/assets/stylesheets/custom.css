@@ -182,8 +182,12 @@ div.pagination a:hover, div.pagination a:active {
 	border: 3px solid #ffffff;
 }
 
-.hover:hover {
+#list-candidate .hover:hover {
 	border: 3px solid #29abe0;
+}
+
+#list-client .hover:hover {
+	border: 3px solid #325d88;
 }
 
 #list-candidate a:hover {

@@ -45,7 +45,7 @@
 			</fieldset>
 			<fieldset class="buttons">
 				<g:submitButton id="create-client-button" disabled="true"
-					name="create" class="save"
+					name="create" class="save btn btn-primary"
 					value="${message(code: 'default.button.create.label', default: 'Create')}" />
 			</fieldset>
 		</g:form>

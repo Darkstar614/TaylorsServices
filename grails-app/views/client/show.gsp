@@ -37,7 +37,7 @@
 					<br /> <strong>State:</strong>
 					${fieldValue(bean: clientInstance, field: "state")}
 					<br /> <strong>Phone:</strong>
-					${fieldValue(bean: clientInstance, field: "phoneNumber")}
+					<span class="phone">${fieldValue(bean: clientInstance, field: "phoneNumber")}</span>
 					<br /> <strong>Email:</strong>
 					${fieldValue(bean: clientInstance, field: "emailAddress")}
 				</div>
