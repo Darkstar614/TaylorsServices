@@ -121,6 +121,8 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'thinktank.taylors
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'thinktank.taylors.UserRole'
 grails.plugin.springsecurity.authority.className = 'thinktank.taylors.Role'
 grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/news'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
 	'/index':                         ['permitAll'],

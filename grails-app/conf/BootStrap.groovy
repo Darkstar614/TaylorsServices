@@ -16,76 +16,43 @@ class BootStrap {
 		def clientRole = new Role(authority: 'ROLE_USER').save(flush: true)
 		def candidateRole = new Role(authority: 'ROLE_CAN').save(flush: true)
 
-		def testUser = new User(username: 'manager', password:'thinktank55', clientId: 0, candidateId: 0)
+		def testUser = new User(username: 'manager', password:'thinktank55')
 		testUser.save(flush: true)
 
 		UserRole.create testUser, adminRole, true
-
-		//clients
-		////////////////////////////////////////////////////////////////////////////
-		
-		testUser = new User(username: 'client1', password:'password', clientId: 1, candidateId: 0)
-		testUser.save(flush: true)
-
-		UserRole.create testUser, clientRole, true
-		
-		testUser = new User(username: 'client2', password:'password', clientId: 2, candidateId: 0)
-		testUser.save(flush: true)
-
-		UserRole.create testUser, clientRole, true
-		
-		testUser = new User(username: 'client3', password:'password', clientId: 3, candidateId: 0)
-		testUser.save(flush: true)
-
-		UserRole.create testUser, clientRole, true
-		
-		testUser = new User(username: 'client4', password:'password', clientId: 4, candidateId: 0)
-		testUser.save(flush: true)
-
-		UserRole.create testUser, clientRole, true
-		
-		testUser = new User(username: 'client5', password:'password', clientId: 5, candidateId: 0)
-		testUser.save(flush: true)
-
-		UserRole.create testUser, clientRole, true
-		
-		testUser = new User(username: 'client6', password:'password', clientId: 6, candidateId: 0)
-		testUser.save(flush: true)
-
-		UserRole.create testUser, clientRole, true
-		
+			
 		//candidates
 		////////////////////////////////////////////////////////////////////////
 		
-		testUser = new User(username: 'candidate1', password:'password', clientId: 0, candidateId: 1)
-		testUser.save(flush: true)
-
-		UserRole.create testUser, candidateRole, true
-		
-		testUser = new User(username: 'candidate2', password:'password', clientId: 0, candidateId: 2)
-		testUser.save(flush: true)
-
-		UserRole.create testUser, candidateRole, true
-		
-		testUser = new User(username: 'candidate3', password:'password', clientId: 0, candidateId: 3)
-		testUser.save(flush: true)
-
-		UserRole.create testUser, candidateRole, true
-		
-		testUser = new User(username: 'candidate4', password:'password', clientId: 0, candidateId: 4)
-		testUser.save(flush: true)
-
-		UserRole.create testUser, candidateRole, true
-		
-		testUser = new User(username: 'candidate5', password:'password', clientId: 0, candidateId: 5)
-		testUser.save(flush: true)
-
-		UserRole.create testUser, candidateRole, true
-		
-		testUser = new User(username: 'candidate6', password:'password', clientId: 0, candidateId: 6)
-		testUser.save(flush: true)
-
-		UserRole.create testUser, candidateRole, true
+//		testUser = new User(username: 'candidate1', password:'password', clientId: 0, candidateId: 1)
+//		testUser.save(flush: true)
+//
+//		UserRole.create testUser, candidateRole, true
+//		
+//		testUser = new User(username: 'candidate2', password:'password', clientId: 0, candidateId: 2)
+//		testUser.save(flush: true)
+//
+//		UserRole.create testUser, candidateRole, true
+//		
+//		testUser = new User(username: 'candidate3', password:'password', clientId: 0, candidateId: 3)
+//		testUser.save(flush: true)
+//
+//		UserRole.create testUser, candidateRole, true
+//		
+//		testUser = new User(username: 'candidate4', password:'password', clientId: 0, candidateId: 4)
+//		testUser.save(flush: true)
+//
+//		UserRole.create testUser, candidateRole, true
+//		
+//		testUser = new User(username: 'candidate5', password:'password', clientId: 0, candidateId: 5)
+//		testUser.save(flush: true)
+//
+//		UserRole.create testUser, candidateRole, true
+//		
+//		testUser = new User(username: 'candidate6', password:'password', clientId: 0, candidateId: 6)
+//		testUser.save(flush: true)
+//
+//		UserRole.create testUser, candidateRole, true
 		
 		if (News.count() == 0 ) {
 			// if no news in the database, create some test data
@@ -105,22 +72,36 @@ class BootStrap {
 
 		if (Client.count() == 0 ) {
 			// if no clients in the database, create some test data
-			clientService.createClient("Fakes And Stuff LLC", "test@test.com")
-			clientService.createClient("Other Brackets INC", "fake@test.com")
-			clientService.createClient("Fathbruckner Ltd", "steve@test.com")
-			clientService.createClient("Harvard Law", "steve@test.com")
-			clientService.createClient("Fenders R US", "steve@test.com")
-			clientService.createClient("Junkstation", "steve@test.com")
+			def client
+			client = clientService.createClient("Fakes And Stuff LLC", "test@test.com")
+			clientService.registerClient(client, "client${client.id.toString()}")
+			client = clientService.createClient("Other Brackets INC", "fake@test.com")
+			clientService.registerClient(client, "client${client.id.toString()}")
+			client = clientService.createClient("Fathbruckner Ltd", "steve@test.com")
+			clientService.registerClient(client, "client${client.id.toString()}")
+			client = clientService.createClient("Harvard Law", "steve@test.com")
+			clientService.registerClient(client, "client${client.id.toString()}")
+			client = clientService.createClient("Fenders R US", "steve@test.com")
+			clientService.registerClient(client, "client${client.id.toString()}")
+			client = clientService.createClient("Junkstation", "steve@test.com")
+			clientService.registerClient(client, "client${client.id.toString()}")
 		}
 		
 		if (Candidate.count() == 0 ) {
 			// if no candidates in the database, create some test data
-			candidateService.createCandidate("Napoleon", "Dynamite")
-			candidateService.createCandidate("John", "Leonardo")
-			candidateService.createCandidate("Steven", "Fathbrckner")
-			candidateService.createCandidate("Rick", "Grimes")
-			candidateService.createCandidate("Greg", "Gulman")
-			candidateService.createCandidate("Bob", "Costas")
+			def candidate
+			candidate = candidateService.createCandidate("Napoleon", "Dynamite")
+			candidateService.registerCandidate(candidate, "candidate${candidate.id.toString()}")
+			candidate = candidateService.createCandidate("John", "Leonardo")
+			candidateService.registerCandidate(candidate, "candidate${candidate.id.toString()}")
+			candidate = candidateService.createCandidate("Steven", "Fathbrckner")
+			candidateService.registerCandidate(candidate, "candidate${candidate.id.toString()}")
+			candidate = candidateService.createCandidate("Rick", "Grimes")
+			candidateService.registerCandidate(candidate, "candidate${candidate.id.toString()}")
+			candidate = candidateService.createCandidate("Greg", "Gulman")
+			candidateService.registerCandidate(candidate, "candidate${candidate.id.toString()}")
+			candidate = candidateService.createCandidate("Bob", "Costas")
+			candidateService.registerCandidate(candidate, "candidate${candidate.id.toString()}")
 		}
 		
 	}

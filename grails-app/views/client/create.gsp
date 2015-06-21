@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="layout" content="main">
+<meta name="nav" content="client" />
 <g:set var="entityName"
 	value="${message(code: 'client.label', default: 'Client')}" />
 <title><g:message code="default.create.label"
@@ -30,20 +31,27 @@
 				</g:eachError>
 			</ul>
 		</g:hasErrors>
-		<g:form url="[resource:clientInstance, action:'save']"
+		<g:form id="clientForm" url="[resource:clientInstance, action:'save']"
 			enctype="multipart/form-data">
 			<fieldset class="form">
 				<g:render template="form" />
 				<label for="username"> Username: <span
 					class="required-indicator">*</span>
 				</label>
-				<g:field class="username" type="text" name="username" />
+				<g:field class="username required" type="text" name="username" />
 				<g:remoteLink class="link-button" action="validateUsername"
 					params="{username:\$('.username').val()}"
-					onSuccess="enableCreateButton()" update="username-error">Check Availability</g:remoteLink>
+					onSuccess="enableDummyButton()" update="username-error">Check Availability</g:remoteLink>
+				<br />
+				<label for="password"> Password: <span
+					class="required-indicator">*</span>
+				</label>
+				<g:field class="password required" type="password" name="password" />
 				<br /> <span id="username-error"></span>
+				<span id="password-error" class="message-red"></span>
 			</fieldset>
 			<fieldset class="buttons">
+			<a id="dummy-create-client" href="javascript:validateUserPass();" class="save btn btn-primary">Create</a>
 				<g:submitButton id="create-client-button" disabled="true"
 					name="create" class="save btn btn-primary"
 					value="${message(code: 'default.button.create.label', default: 'Create')}" />

@@ -174,8 +174,13 @@ div.pagination a:hover, div.pagination a:active {
 }
 
 .results input[type=checkbox] {
-	width: 30px;
-	height: 30px;
+	/* Double-sized Checkboxes */
+	-ms-transform: scale(2); /* IE */
+	-moz-transform: scale(2); /* FF */
+	-webkit-transform: scale(2); /* Safari and Chrome */
+	-o-transform: scale(2); /* Opera */
+	padding: 10px;
+	margin-top: 16px;
 }
 
 .hover {
@@ -245,10 +250,9 @@ div.pagination a:hover, div.pagination a:active {
 	text-transform: uppercase;
 }
 
-ul
-{
-    list-style-type: none;
-    padding-left:0;
+ul {
+	list-style-type: none;
+	padding-left: 0;
 }
 
 .message-green {

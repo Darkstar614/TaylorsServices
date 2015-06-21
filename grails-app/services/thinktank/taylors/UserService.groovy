@@ -12,4 +12,12 @@ class UserService {
 			return false
 		}
     }
+	
+	def Boolean validUsername(String username) {
+		if (username.matches("[a-z0-9_-]{3,15}")) {
+			return true
+		}else {
+			return false
+		}
+	}
 }

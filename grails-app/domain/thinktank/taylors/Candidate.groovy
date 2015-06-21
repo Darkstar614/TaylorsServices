@@ -3,7 +3,6 @@ package thinktank.taylors
 
 class Candidate {
 	
-//	String id
 	String firstName
 	String lastName
 	Date birthdate

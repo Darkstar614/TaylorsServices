@@ -14,6 +14,7 @@
 <link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}"
 	type="image/x-icon">
 <asset:javascript src="jquery-1.11.3.min.js" />
+<asset:javascript src="jquery.validate.min.js" />
 <asset:stylesheet src="bootstrap.min.css" />
 <asset:stylesheet src="custom.css" />
 <asset:javascript src="bootstrap.js" />

@@ -44,8 +44,10 @@ class ClientController {
 	def validateUsername() {
 		if (userService.usernameExists(params.username)) {
 			render "<p class=\"message-red\">Username of ${params.username} already exists. Please Choose another one</p>"
+		} else if (!userService.validUsername(params.username)){
+			render "<p id=\"username-fail\" class=\"message-red\">Username of ${params.username} is not valid. Please use only letters and numbers with no spaces or special characters.</p>"
 		} else {
-			render "<p class=\"message-green\">Username of ${params.username} is available!</p>"
+			render "<p id=\"username-success\" class=\"message-green\">Username of ${params.username} is available!</p>"
 		}
 	}
 
@@ -74,7 +76,7 @@ class ClientController {
 		def uploadedFile = request.getFile("cfile")
 		fileUploadService.persistFile(uploadedFile, "${clientInstance.id}.jpg", "assets/clients/")
 
-		def newUser = new User(username: params.username, password:'password', clientId: clientInstance.id, candidateId: 0)
+		def newUser = new User(username: params.username, password: params.password, client: clientInstance)
 		newUser.save(flush: true)
 
 		UserRole.create newUser, Role.findByAuthority('ROLE_USER'), true
@@ -88,10 +90,10 @@ class ClientController {
 				redirect clientInstance
 			}
 			'*' { respond clientInstance, [status: CREATED] }
-		}
+		}	
 	}
 
-	@Secured(['ROLE_ADMIN'])
+	@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 	def edit(Client clientInstance) {
 		respond clientInstance
 	}

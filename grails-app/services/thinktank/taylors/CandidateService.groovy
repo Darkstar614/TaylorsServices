@@ -1,6 +1,7 @@
 package thinktank.taylors
 
 import grails.transaction.Transactional
+
 import java.util.UUID;
 
 @Transactional
@@ -8,7 +9,7 @@ class CandidateService {
 
 	def springSecurityService
 	
-	def createCandidate(String firstName, String lastName) {
+	def Candidate createCandidate(String firstName, String lastName) {
 		Candidate candidate = new Candidate()
 		candidate.firstName = firstName
 		candidate.lastName = lastName
@@ -37,6 +38,13 @@ class CandidateService {
 		candidate.salary = '$25,000'
 		candidate.onAssignment = false
 		candidate.save()
+	}
+	
+	def registerCandidate(Candidate candidate, String username) {
+		def candidateUser = new User(username: username, password:'password')
+		candidateUser.setCandidate(candidate)
+		candidateUser.save()
+		UserRole.create candidateUser, Role.findByAuthority('ROLE_CAN'), true
 	}
 	
 	def getSelectedCandidates(params) {		

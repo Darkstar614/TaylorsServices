@@ -18,4 +18,11 @@ class ClientService {
 		client.partnersSince = new Date()
 		client.save()
 	}
+	
+	def registerClient(Client client, String username) {
+		def clientUser = new User(username: username, password:'password')
+        clientUser.setClient(client)
+		clientUser.save()	
+		UserRole.create clientUser, Role.findByAuthority('ROLE_USER'), true
+	}
 }

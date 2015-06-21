@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta name="layout" content="main">
+<meta name="nav" content="candidate" />
 <g:set var="entityName"
 	value="${message(code: 'candidate.label', default: 'Candidate')}" />
 <title><g:message code="default.show.label" args="[entityName]" /></title>
@@ -40,9 +41,9 @@
 					${fieldValue(bean: candidateInstance, field: "state")}
 					<br /> <strong>Zip Code:</strong>
 					${fieldValue(bean: candidateInstance, field: "zipCode")}
-					<br /> <strong>Phone:</strong>
-					<span class="phone">${fieldValue(bean: candidateInstance, field: "phoneNumber")}</span>
-					<br /> <strong>Email:</strong>
+					<br /> <strong>Phone:</strong> <span class="phone">
+						${fieldValue(bean: candidateInstance, field: "phoneNumber")}
+					</span> <br /> <strong>Email:</strong>
 					${fieldValue(bean: candidateInstance, field: "emailAddress")}
 					<br /> <strong>Skills:</strong>
 					${fieldValue(bean: candidateInstance, field: "skills")}
@@ -68,10 +69,19 @@
 					</g:form>
 				</div>
 			</sec:ifAnyGranted>
-			<sec:ifAnyGranted roles="ROLE_USER">
-				<div>
+			<sec:ifAnyGranted roles="ROLE_USER,ROLE_CAN">
+				<div class="float">
 					<a class="edit link-font-increase pad-left"
 						href="${resource(dir:'resumes',file:candidateInstance.id.toString() + '.docx')}">RESUME</a>
+				</div>
+
+				<div class="right-align">
+					<fieldset class="buttons">
+						<g:link class="edit link-font-increase pad-right" action="edit"
+							resource="${candidateInstance}">
+							<g:message code="default.button.edit.label" default="Edit" />
+						</g:link>
+					</fieldset>
 				</div>
 			</sec:ifAnyGranted>
 		</div>

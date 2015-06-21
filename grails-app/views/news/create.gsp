@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
+		<meta name="nav" content="news" />
 		<g:set var="entityName" value="${message(code: 'news.label', default: 'News')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>

@@ -3,6 +3,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
+		<meta name="nav" content="client" />
 		<g:set var="entityName" value="${message(code: 'client.label', default: 'Client')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 	</head>
