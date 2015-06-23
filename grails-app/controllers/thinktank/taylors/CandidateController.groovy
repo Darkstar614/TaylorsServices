@@ -11,8 +11,10 @@ class CandidateController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-	def candidateService
 	def springSecurityService
+	def fileUploadService
+	def userService
+	def candidateService
 
 	@Secured(['ROLE_USER', 'ROLE_ADMIN'])
 	def index(Integer max) {
@@ -24,7 +26,7 @@ class CandidateController {
 	def show(Candidate candidateInstance) {
 		respond candidateInstance
 	}
-	
+
 	@Secured(['ROLE_CAN'])
 	def profile() {
 		def candidateId = springSecurityService.currentUser.candidateId
@@ -37,8 +39,19 @@ class CandidateController {
 		respond new Candidate(params)
 	}
 
+	@Secured(['ROLE_ADMIN'])
+	def validateUsername() {
+		if (userService.usernameExists(params.username)) {
+			render "<p class=\"message-red\">Username of ${params.username} already exists. Please Choose another one</p>"
+		} else if (!userService.validUsername(params.username)){
+			render "<p id=\"username-fail\" class=\"message-red\">Username of ${params.username} is not valid. Please use only letters and numbers with no spaces or special characters.</p>"
+		} else {
+			render "<p id=\"username-success\" class=\"message-green\">Username of ${params.username} is available!</p>"
+		}
+	}
+
 	@Secured(['ROLE_USER'])
-	def confirmRequest() {
+	def confirmCandidateRequest() {
 		def selectedCandidates = candidateService.getSelectedCandidates(params)
 
 		if (selectedCandidates.size() > 3) {
@@ -50,9 +63,8 @@ class CandidateController {
 			redirect view:'index'
 		}
 		[candidatesList:selectedCandidates]
-
 	}
-	
+
 	@Transactional
 	@Secured(['ROLE_ADMIN', 'ROLE_CAN'])
 	def save(Candidate candidateInstance) {
@@ -66,9 +78,23 @@ class CandidateController {
 			return
 		}
 
+		if (userService.usernameExists(params.username)) {
+			flash.message = "Username of ${params.username} was already in use. Please try again."
+			redirect view:'create'
+			return
+		}
+
 		candidateInstance.save flush:true
 
-		confirmRequest.withFormat {
+		def uploadedFile = request.getFile("cfile")
+		fileUploadService.persistFile(uploadedFile, "${candidateInstance.id}.jpg", "assets/candidates/")
+
+		def newUser = new User(username: params.username, password: params.password, candidates: candidateInstance)
+		newUser.save(flush: true)
+
+		UserRole.create newUser, Role.findByAuthority('ROLE_CAN'), true
+
+		request.withFormat {
 			form multipartForm {
 				flash.message = message(code: 'default.created.message', args: [
 					message(code: 'candidate.label', default: 'Candidate'),
@@ -100,7 +126,7 @@ class CandidateController {
 
 		candidateInstance.save flush:true
 
-		confirmRequest.withFormat {
+		request.withFormat {
 			form multipartForm {
 				flash.message = message(code: 'default.updated.message', args: [
 					message(code: 'Candidate.label', default: 'Candidate'),
@@ -123,7 +149,7 @@ class CandidateController {
 
 		candidateInstance.delete flush:true
 
-		confirmRequest.withFormat {
+		request.withFormat {
 			form multipartForm {
 				flash.message = message(code: 'default.deleted.message', args: [
 					message(code: 'Candidate.label', default: 'Candidate'),
@@ -136,7 +162,7 @@ class CandidateController {
 	}
 
 	protected void notFound() {
-		confirmRequest.withFormat {
+		request.withFormat {
 			form multipartForm {
 				flash.message = message(code: 'default.not.found.message', args: [
 					message(code: 'candidate.label', default: 'Candidate'),

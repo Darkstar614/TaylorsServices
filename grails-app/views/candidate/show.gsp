@@ -26,10 +26,9 @@
 			</div>
 			<div class="panel-body">
 				<div>
-					<asset:image
-						src="candidates/${fieldValue(bean: candidateInstance, field: "id")}.jpg"
-						alt="temp icon" />
-					<br /> <br />
+					<img
+						src="${resource(dir:'assets/candidates',file:candidateInstance.id.toString() + '.jpg')}"
+						alt="Candidate Image" /> <br /> <br />
 				</div>
 
 				<div class="block">
@@ -41,8 +40,7 @@
 					${fieldValue(bean: candidateInstance, field: "state")}
 					<br /> <strong>Zip Code:</strong>
 					${fieldValue(bean: candidateInstance, field: "zipCode")}
-					<br /> <strong>Phone:</strong> <span class="phone">
-						${fieldValue(bean: candidateInstance, field: "phoneNumber")}
+					<br /> <strong>Phone:</strong> <span class="phone"> ${fieldValue(bean: candidateInstance, field: "phoneNumber")}
 					</span> <br /> <strong>Email:</strong>
 					${fieldValue(bean: candidateInstance, field: "emailAddress")}
 					<br /> <strong>Skills:</strong>

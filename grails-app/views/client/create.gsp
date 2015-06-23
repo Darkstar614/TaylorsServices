@@ -51,8 +51,8 @@
 				<span id="password-error" class="message-red"></span>
 			</fieldset>
 			<fieldset class="buttons">
-			<a id="dummy-create-client" href="javascript:validateUserPass();" class="save btn btn-primary">Create</a>
-				<g:submitButton id="create-client-button" disabled="true"
+			<a id="dummy-create-entity" href="javascript:validateUserPass();" class="save btn btn-primary">Create</a>
+				<g:submitButton id="create-entity-button" disabled="true"
 					name="create" class="save btn btn-primary"
 					value="${message(code: 'default.button.create.label', default: 'Create')}" />
 			</fieldset>

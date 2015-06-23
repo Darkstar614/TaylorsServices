@@ -4,7 +4,7 @@ $( document ).ready( function() {
 	 return text.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
   });
   
-  $('#create-client-button').hide();
+  $('#create-entity-button').hide();
   
   $('div.candidateFilter').delegate('input[type=checkbox]', 'change', function()
   {
@@ -29,19 +29,19 @@ $( document ).ready( function() {
 
 function validateUserPass() {
 	if ($('#username-fail').length) {
-		$('#create-client-button').prop('disabled', true);			
+		$('#create-entity-button').prop('disabled', true);			
 		if (!validatePassword()) {
 			$('#password-error').html('<p>Invalid Password. Must be alphanumeric and between 5 and 15 characters</p>');
 		}
 	}
 	if ($('#username-success').length) {
 		if (validatePassword()) {
-			$('#create-client-button').prop('disabled', false);
-			$('#create-client-button').show();
-			$('#dummy-create-client').hide();
+			$('#create-entity-button').prop('disabled', false);
+			$('#create-entity-button').show();
+			$('#dummy-create-entity').hide();
 			$('#password-error').html('')
 		}else{
-			$('#create-client-button').prop('disabled', true);
+			$('#create-entity-button').prop('disabled', true);
 			$('#password-error').html('<p>Invalid Password. Must be alphanumeric and between 5 and 15 characters</p>');
 		}
 	}
@@ -57,7 +57,7 @@ function validatePassword() {
 }
 
 function enableDummyButton() {
-	$('#dummy-create-client').prop('disabled', false);
-	$('#create-client-button').hide();
-	$('#dummy-create-client').show();
+	$('#dummy-create-entity').prop('disabled', false);
+	$('#create-entity-button').hide();
+	$('#dummy-entity-client').show();
 }

@@ -22,6 +22,12 @@
 			</div>
 		</g:if>
 
+		<sec:ifAnyGranted roles="ROLE_ADMIN">
+			<div class="right-align">
+				<g:link class="create link-font-increase-subtle" action="create">Create New Candidate</g:link>
+			</div>
+		</sec:ifAnyGranted>
+
 		<div class="candidateFilter">
 			<h3>Filter By Skills:</h3>
 			<label> <input type="checkbox" rel="bowhunting" />
@@ -65,9 +71,9 @@
 							<g:link action="show" id="${candidateInstance.id}">
 								<div class="panel-body">
 									<div class="float image-padding">
-										<asset:image
-											src="candidates/${fieldValue(bean: candidateInstance, field: "id")}.jpg"
-											alt="temp icon" />
+										<img
+											src="${resource(dir:'assets/candidates',file:candidateInstance.id.toString() + '.jpg')}"
+											alt="Candidate Image" />
 									</div>
 
 									<div class="block black-text">
@@ -76,8 +82,7 @@
 										${fieldValue(bean: candidateInstance, field: "state")}<br /> <strong>Email
 											Address:</strong>
 										${fieldValue(bean: candidateInstance, field: "emailAddress")}<br />
-										<strong>Phone Number:</strong> <span class="phone">
-											${fieldValue(bean: candidateInstance, field: "phoneNumber")}
+										<strong>Phone Number:</strong> <span class="phone"> ${fieldValue(bean: candidateInstance, field: "phoneNumber")}
 										</span><br /> <strong>Experience:</strong>
 										${fieldValue(bean: candidateInstance, field: "experience")}<br />
 										<strong>Skills:</strong>
@@ -95,7 +100,7 @@
 			<sec:ifAnyGranted roles="ROLE_USER">
 				<div class="right-align">
 					<g:actionSubmit class="btn btn-primary btn-lg"
-						value="Submit Request" action="confirmRequest" />
+						value="Submit Request" action="confirmCandidateRequest" />
 				</div>
 			</sec:ifAnyGranted>
 		</g:form>

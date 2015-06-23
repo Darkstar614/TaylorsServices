@@ -36,7 +36,6 @@ class CandidateService {
 		candidate.experience = 'Has worked in lumber yard. Can use various woodworking tools.'
 		candidate.education = 'Bachelor\'s of Science'
 		candidate.salary = '$25,000'
-		candidate.onAssignment = false
 		candidate.save()
 	}
 	

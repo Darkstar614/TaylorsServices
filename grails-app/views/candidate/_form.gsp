@@ -92,3 +92,37 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: candidateInstance, field: 'experience', 'error')} required">
+	<label for="experience">
+		<g:message code="candidate.experience.label" default="Experience" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="experience" maxlength="100" required="" value="${candidateInstance?.experience}"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: candidateInstance, field: 'education', 'error')} required">
+	<label for="education">
+		<g:message code="candidate.education.label" default="Education" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="education" maxlength="100" required="" value="${candidateInstance?.education}"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: candidateInstance, field: 'salary', 'error')} required">
+	<label for="salary">
+		<g:message code="candidate.salary.label" default="Salary" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="salary" maxlength="100" required="" value="${candidateInstance?.salary}"/>
+
+</div>
+
+<div class="fieldcontain required">
+	<label for="cfile">
+		Candidate Image
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field type="file" name="cfile" accept=".jpg"/><p>**Image size must be 114 by 114 pixels</p>
+</div>

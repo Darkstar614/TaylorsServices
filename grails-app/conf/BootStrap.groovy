@@ -20,39 +20,6 @@ class BootStrap {
 		testUser.save(flush: true)
 
 		UserRole.create testUser, adminRole, true
-			
-		//candidates
-		////////////////////////////////////////////////////////////////////////
-		
-//		testUser = new User(username: 'candidate1', password:'password', clientId: 0, candidateId: 1)
-//		testUser.save(flush: true)
-//
-//		UserRole.create testUser, candidateRole, true
-//		
-//		testUser = new User(username: 'candidate2', password:'password', clientId: 0, candidateId: 2)
-//		testUser.save(flush: true)
-//
-//		UserRole.create testUser, candidateRole, true
-//		
-//		testUser = new User(username: 'candidate3', password:'password', clientId: 0, candidateId: 3)
-//		testUser.save(flush: true)
-//
-//		UserRole.create testUser, candidateRole, true
-//		
-//		testUser = new User(username: 'candidate4', password:'password', clientId: 0, candidateId: 4)
-//		testUser.save(flush: true)
-//
-//		UserRole.create testUser, candidateRole, true
-//		
-//		testUser = new User(username: 'candidate5', password:'password', clientId: 0, candidateId: 5)
-//		testUser.save(flush: true)
-//
-//		UserRole.create testUser, candidateRole, true
-//		
-//		testUser = new User(username: 'candidate6', password:'password', clientId: 0, candidateId: 6)
-//		testUser.save(flush: true)
-//
-//		UserRole.create testUser, candidateRole, true
 		
 		if (News.count() == 0 ) {
 			// if no news in the database, create some test data

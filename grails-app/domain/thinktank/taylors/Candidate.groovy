@@ -16,7 +16,7 @@ class Candidate {
 	String experience
 	String education
 	String salary
-	boolean onAssignment
+	boolean onAssignment = false
 	
     static constraints = {
 		
@@ -33,7 +33,6 @@ class Candidate {
 		experience size: 0..500, blank: false, nullable: false
 		education size: 1..30, blank: false, nullable: false
 		salary size: 1..10, blank: false, nullable: false
-		onAssignment blank: false, nullable: false
     }
 	
 	static mapping = {
